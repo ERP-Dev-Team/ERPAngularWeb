@@ -1,0 +1,23 @@
+.addUnitBar{
+    height: 50px;
+    width: 100%;
+    justify-content: right;
+  }
+  .jumbotron{
+    text-align: center;
+  }
+  
+  .formContainer{
+    text-align: center;
+}
+
+.row{
+  justify-content: center;
+  align-items: center;
+}
+
+.btn-align{
+  margin-top: 5px;
+  float: right;
+  
+}

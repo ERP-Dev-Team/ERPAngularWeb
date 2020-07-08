@@ -1,0 +1,26 @@
+
+.container {
+    position: absolute;
+    height: 100%;
+    max-width: 100%;
+    min-width: 1192px;
+    padding: 0;
+    /* background-image: -webkit-linear-gradient(9deg, #d92027 0% , #c70039 50% ); */
+    background-color: #00263b;
+     }
+ 
+ .nav-align{
+     margin-right: 4.5rem;
+     font-size: 1.25rem;
+     
+      }
+
+      .nav .nav .nav-item.active .nav-link,
+      .nav .nav .nav-item:focus .nav-link,
+      .nav .nav .nav-item:hover .nav-link {
+          color: #ffffff;
+      }
+
+      .nav .nav .nav-link {
+        color: rgba(255,255,255,.5);
+    }

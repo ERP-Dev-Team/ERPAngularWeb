@@ -1,0 +1,16 @@
+.login-logo{
+  width: 100px;
+  height: 100px;
+
+}
+
+.navbar-brand {
+  font-size: 1.45rem;
+  font-weight: bolder;
+  text-align: center;
+  color: #035aa6;
+  position: absolute;
+  left: 50%;
+  top:40%;
+  margin-left: -50px;
+}

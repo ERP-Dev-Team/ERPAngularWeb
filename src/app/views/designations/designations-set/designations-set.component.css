@@ -1,0 +1,26 @@
+.addDesignationBar{
+  height: 50px;
+  width: 100%;
+  justify-content: right;
+}
+
+
+.icon{
+  height: 60px;
+  margin-right: 1rem;
+  width: 60px;
+}
+
+.btn-align{
+  margin-top: 5px;
+  float: right;
+  
+}
+
+.jumbotron{
+  text-align: center;
+}
+
+.name{
+  font-size: large;
+}

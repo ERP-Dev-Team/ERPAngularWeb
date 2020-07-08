@@ -1,0 +1,18 @@
+
+<div class="jumbotron">
+    <h1 class="display-4">Units</h1>
+    <p class="lead">Metrics are the preliminary things</p>
+    <hr class="my-2">
+    <a class="btn btn-primary btn-lg button" href="#" role="button">Learn more</a>
+    <br><br><br>
+</div>
+<form class="formContainer" [formGroup]="unitForm" (ngSubmit)="onSubmit()">
+    <div class="form-row row">
+        <div class="form-group col-md-4">
+      <label for="UnitName" class="lead" >Unit Name</label>
+      <input type="text" class="form-control" id="Name"  formControlName="unitName" placeholder="   Name">
+    </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+

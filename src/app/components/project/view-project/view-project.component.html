@@ -1,0 +1,31 @@
+
+<div class="jumbotron">
+    <h1 class="display-4">Live Projects</h1>
+    <p class="lead">Find the your relevant project information here.</p>
+    <hr class="my-4">
+    <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
+    <br><br><br>
+  </div>
+  <div class="addProjectBar">
+    <button (click)="navigativeToAddProject()" class="btn btn-secondary btn-align">Add Project</button>
+  </div>
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th class="text-primary" scope="col">#</th>
+        <th class="text-success" scope="col">Name</th>
+        <th  class="text-info" scope="col">Status</th>
+        <th  class="text-warning" scope="col">Organization</th>
+        <th class="text-danger" scope="col">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let project of projectList">
+        <th scope="row">{{projectList.indexOf(project) + 1}}</th>
+        <td class="text-primary">{{project.name}}</td>
+        <td>{{project.status}}</td>
+        <td>Skanda</td>
+        <td><button type="submit" (click)="onProjectEdit(project)" class="btn btn-primary" >Edit</button><td>
+      </tr>
+    </tbody>
+  </table>

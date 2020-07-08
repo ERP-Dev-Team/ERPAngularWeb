@@ -1,0 +1,17 @@
+
+<div class="jumbotron">
+    <h1 class="display-4">Designations</h1>
+    <p class="lead">Efficient entreprenuer must maintain meticulous organising structure</p>
+    <hr class="my-2">
+    <a class="btn btn-primary btn-lg button" href="#" role="button">Learn more</a>
+    <br><br><br>
+</div>
+<form class="formContainer" [formGroup]="designationForm" (ngSubmit)="onSubmit()">
+    <div class="form-row row">
+        <div class="form-group col-md-4">
+      <label for="DesignationName" class="lead" >Designation Name</label>
+      <input type="text" class="form-control" id="Name"  formControlName="designationName" placeholder="   Name">
+    </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Update</button>
+</form>

@@ -1,0 +1,34 @@
+
+<div class="jumbotron">
+  <br><br>
+    <h1 class="display-4">Camps</h1>
+    <p class="lead">These are most significant things for your project</p>
+    <hr class="my-4">
+    <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
+    <br><br><br>
+  </div>
+  <div class="addCampBar">
+    <button (click)="navigativeToAddCamp()" class="btn btn-secondary btn-align">Add Camp</button>
+  </div>
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th class="text-dark" scope="col">#</th>
+        <th class="text-dark" scope="col">Name</th>
+        <th  class="text-dark" scope="col">Status</th>
+        <th  class="text-dark" scope="col">Address</th>
+        <th  class="text-dark" scope="col">Project Name</th>
+        <th class="text-dark" scope="col">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let camp of campList">
+        <th scope="row">{{campList.indexOf(camp) + 1}}</th>
+        <td class="text-primary">{{camp.name}}</td>
+        <td class="text-primary">{{camp.status}}</td>
+        <td>{{camp.address}}</td>
+        <td>{{camp.project.name}}</td>
+        <td><button type="submit" (click)="onCampEdit(camp)" class="btn btn-primary" >Edit</button><td>
+      </tr>
+    </tbody>
+  </table>

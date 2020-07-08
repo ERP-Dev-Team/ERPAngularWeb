@@ -1,0 +1,23 @@
+.jumbotron{
+    text-align: center;
+    background-size: cover;
+    resize: both;
+}
+.addCampBar{
+    height: 50px;
+    width: 100%;
+    justify-content: right;
+}
+
+.btn-align{
+    margin-top: 5px;
+    float: right;
+}
+
+.display-4{
+    color: #fff;
+}
+
+.lead{
+    color: #ffffff;
+}

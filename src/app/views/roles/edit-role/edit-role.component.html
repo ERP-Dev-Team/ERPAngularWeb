@@ -1,0 +1,17 @@
+
+<div class="jumbotron">
+    <h1 class="display-4">Roles</h1>
+    <p class="lead">Needed for your organisations coherent involvement</p>
+    <hr class="my-2">
+    <a class="btn btn-primary btn-lg button" href="#" role="button">Learn more</a>
+    <br><br><br>
+</div>
+<form class="formContainer" [formGroup]="roleForm" (ngSubmit)="onSubmit()">
+    <div class="form-row row">
+        <div class="form-group col-md-4">
+      <label for="RoleName" class="lead" >Role Name</label>
+      <input type="text" class="form-control" id="Name"  formControlName="roleName" placeholder="   Name">
+    </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Update</button>
+</form>

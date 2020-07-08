@@ -1,0 +1,12 @@
+.row{
+    justify-content: center;
+    align-items: center;
+}
+
+.formContainer{
+    text-align: center;
+}
+
+.jumbotron{
+    /* text-align: center; */
+}

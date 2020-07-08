@@ -1,0 +1,15 @@
+.jumbotron{
+    text-align: center;
+    background-color: #00263b;
+}
+.addProjectBar{
+    height: 50px;
+    width: 100%;
+    justify-content: right;
+}
+
+.btn-align{
+    margin-top: 5px;
+    float: right;
+    
+}

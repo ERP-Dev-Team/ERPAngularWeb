@@ -1,0 +1,28 @@
+
+<div class="jumbotron">
+    <h1 class="display-4">Designations</h1>
+    <p class="lead">Efficient entreprenuer must maintain meticulous organising structure</p>
+    <hr class="my-2">
+    <a class="btn btn-primary btn-lg button" href="#" role="button">Learn more</a>
+    <br><br><br>
+</div>
+<div class="addDesignationBar">
+    <button (click)="navigativeToAddDesignation()" class="btn btn-secondary btn-align" >Add Designations</button>
+  </div>
+<table class="table table-hover">
+    <thead >
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col" class="text-dark">Designation Name</th>
+        <th scope="col" class="text-dark">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor= "let designation of designationsList">
+        <th scope="row">{{designationsList.indexOf(designation) +1}}</th>
+        <td class="text-primary">{{designation.name}}</td>
+        <td><button type="submit" (click)="onDesignationEdit(designation)" class="btn btn-success" >Edit</button>
+            / <button type="submit"  class="btn btn-danger" >Delete</button> <td> </tr>
+    </tbody>
+  </table>
+

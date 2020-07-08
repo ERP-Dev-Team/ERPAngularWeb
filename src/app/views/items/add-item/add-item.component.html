@@ -1,0 +1,57 @@
+
+<div class="jumbotron">
+    <h1 class="display-4">Items</h1>
+    <p class="lead">Metrics are the preliminary things</p>
+    <hr class="my-2">
+    <a class="btn btn-primary btn-lg button" href="#" role="button">Learn more</a>
+    <br><br><br>
+</div>
+<form class="formContainer" [formGroup]="itemForm" (ngSubmit)="onSubmit()">
+        <div class="form-row row">
+            <div class="form-group col-md-4">
+              <label for="name" class="lead" >Item Name</label>
+              <input type="text" class="form-control" formControlName="name" id="name">
+            </div>
+            <div class="form-group col-md-4">
+                <label for="hsnNumber" class="lead" >HSN Number</label>
+                <input type="text" class="form-control" formControlName="hsnNumber" id="hsnNumber" >
+              </div>
+          </div>
+    
+          <div class="form-row row">
+            <div class="form-group col-md-8">
+                <label for="description" class="lead" >Description</label>
+                <input type="text" class="form-control" formControlName="description" id="description" >
+        </div>
+        </div>
+        
+          <div class="form-row row">
+            <div class="form-group col-md-4">
+              <label for="partNumber" class="lead" >Part Number</label>
+              <input type="text" class="form-control" formControlName="partNumber" id="partNumber" >
+            </div>
+            <div class="form-group col-md-4">
+              <label for="category" class="lead">Item Category</label>
+              <select class="form-control" formControlName="itemCategory" id="itemCategory">
+                  <option selected>Choose...</option>
+                  <option *ngFor="let itemCategory of itemCategoryList" (click)="onChangeCategory(itemCategory)">{{itemCategory.name}}</option>
+                </select>
+            </div>
+          </div>
+      
+          <div class="form-row row">
+            <div class="form-group col-md-4">
+              <label for="itemCode" class="lead" >Item Code</label>
+              <input type="text" class="form-control" formControlName="itemCode" id="itemCode">
+            </div>
+            <div class="form-group col-md-4">
+              <label for="unit" class="lead">Unit</label>
+              <select class="form-control" formControlName="unit" id="unit">
+                  <option selected>Choose...</option>
+                  <option *ngFor="let unit of unitsList" (click)="onChangeUnit(unit)" >{{unit.name}}</option>
+                </select>
+            </div>
+          </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
