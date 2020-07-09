@@ -23,12 +23,7 @@
               "src/favicon.ico",
               "src/assets"
             ],
-            "styles": [
-              "assets/vendor/fontawesome-free/css/all.min.css",
-              "assets/css/nunito-font.css",
-              "assets/css/sb-admin-2.min.css",
-              "styles.css"
-            ],
+            "styles": [],
             "scripts": []
           },
           "configurations": {
