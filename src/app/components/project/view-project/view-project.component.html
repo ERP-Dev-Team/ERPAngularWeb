@@ -1,14 +1,86 @@
 
-<div class="jumbotron">
-    <h1 class="display-4">Live Projects</h1>
-    <p class="lead">Find the your relevant project information here.</p>
-    <hr class="my-4">
-    <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
-    <br><br><br>
+ <!-- Page Heading -->
+ <div class="d-sm-flex align-items-center justify-content-between mb-4">
+  <h1 class="h3 mb-0 text-gray-800">Projects</h1>
+  <button (click)="navigativeToAddProject()" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-plus fa-sm text-white-50"></i> Add Project</button>
+</div>
+
+<!-- Content Row -->
+<div class="row">
+
+  <!-- Earnings (Monthly) Card Example -->
+  <div class="col-xl-3 col-md-6 mb-4">
+    <div class="card border-left-primary shadow h-100 py-2">
+      <div class="card-body">
+        <div class="row no-gutters align-items-center">
+          <div class="col mr-2">
+            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Open Projects</div>
+            <div class="h5 mb-0 font-weight-bold text-gray-800">1</div>
+          </div>
+          <div class="col-auto">
+            <!-- <i class="fas fa-calendar fa-2x text-gray-300"></i> -->
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-  <div class="addProjectBar">
-    <button (click)="navigativeToAddProject()" class="btn btn-secondary btn-align">Add Project</button>
+
+    <!-- Pending Requests Card Example -->
+    <div class="col-xl-3 col-md-6 mb-4">
+      <div class="card border-left-warning shadow h-100 py-2">
+        <div class="card-body">
+          <div class="row no-gutters align-items-center">
+            <div class="col mr-2">
+              <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Paused Projects</div>
+              <div class="h5 mb-0 font-weight-bold text-gray-800">2</div>
+            </div>
+            <div class="col-auto">
+              <!-- <i class="fas fa-pause-circle fa-2x text-gray-300"></i> -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  <!-- Earnings (Monthly) Card Example -->
+  <div class="col-xl-3 col-md-6 mb-4">
+    <div class="card border-left-success shadow h-100 py-2">
+      <div class="card-body">
+        <div class="row no-gutters align-items-center">
+          <div class="col mr-2">
+            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Closed Projects</div>
+            <div class="h5 mb-0 font-weight-bold text-gray-800">3</div>
+          </div>
+          <div class="col-auto">
+            <!-- <i class="fas fa-dollar-sign fa-2x text-gray-300"></i> -->
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
+
+   <!-- Earnings (Monthly) Card Example -->
+   <div class="col-xl-3 col-md-6 mb-4">
+    <div class="card border-left-dark shadow h-100 py-2">
+      <div class="card-body">
+        <div class="row no-gutters align-items-center">
+          <div class="col mr-2">
+            <div class="text-xs font-weight-bold text-dark text-uppercase mb-1">Terminated Projects</div>
+            <div class="h5 mb-0 font-weight-bold text-gray-800">3</div>
+          </div>
+          <div class="col-auto">
+            <!-- <i class="fas fa-dollar-sign fa-2x text-gray-300"></i> -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- Content Row -->
+
+
   <table class="table table-hover">
     <thead>
       <tr>

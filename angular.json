@@ -24,17 +24,12 @@
               "src/assets"
             ],
             "styles": [
-              "src/vendor/fontawesome-free/css/all.min.css",
-              "src/css/nunito-font.css",
-              "src/css/sb-admin-2.min.css",
-              "src/styles.css"
+              "assets/vendor/fontawesome-free/css/all.min.css",
+              "assets/css/nunito-font.css",
+              "assets/css/sb-admin-2.min.css",
+              "styles.css"
             ],
-            "scripts": [
-              "src/vendor/jquery/jquery.min.js",
-              "src/vendor/bootstrap/js/bootstrap.bundle.min.js",
-              "src/vendor/jquery-easing/jquery.easing.min.js",
-              "src/js/sb-admin-2.js"
-            ]
+            "scripts": []
           },
           "configurations": {
             "production": {
@@ -127,6 +122,7 @@
           }
         }
       }
-    }},
+    }
+  },
   "defaultProject": "ERPAngularWeb"
 }
