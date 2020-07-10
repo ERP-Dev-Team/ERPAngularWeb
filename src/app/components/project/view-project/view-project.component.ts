@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {Apollo} from 'apollo-angular';
+import { Apollo } from 'apollo-angular';
 import gql from 'graphql-tag';
-import {  Router, ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-view-project',
@@ -10,43 +10,92 @@ import {  Router, ActivatedRoute } from '@angular/router';
 })
 export class ViewProjectComponent implements OnInit {
 
-  projectList: any;
+  projectList: [];
+  openProjectsCount: number;
+  closedProjectsCount: number;
+  pausedProjectsCount: number;
+  terminatedProjectsCount: number;
   responseGetter: any;
+  dashboardGetter: any;
 
-  constructor(private apollo: Apollo, private route: ActivatedRoute ,  private router: Router ) {
+  constructor(private apollo: Apollo, private route: ActivatedRoute, private router: Router) {
+    this.openProjectsCount = 0;
+    this.closedProjectsCount = 0;
+    this.pausedProjectsCount = 0;
+    this.terminatedProjectsCount = 0;
+    this.setupProjectsDashboard(apollo);
+    this.setupProjectsTable(apollo);
+
+  }
+
+  public onProjectEdit(event: any) {
+
+    this.router.navigate(['/editProject'], { queryParams: event, skipLocationChange: true })
+  }
+
+  private setupProjectsDashboard(apollo: Apollo) {
+
     this.apollo
-    .watchQuery({
-      query: gql`
+      .query({
+        query: gql`
         {
-          projects{
-            _id,
-            name,
-            status,
-            startDate,
-            endDate,
-            createdAt,
-            updatedAt
+          projectDashboard{
+            openProjects,
+            pausedProjects,
+            closedProjects,
+            terminatedProjects
           }
         }
-      `, 
-    })
-    .valueChanges.subscribe(result => {
-       this.responseGetter=(result.data);
-        this.projectList = this.responseGetter.projects;
+      `,
+      })
+      .subscribe(result => {
+        this.dashboardGetter = (result.data);
+        this.openProjectsCount = this.dashboardGetter.projectDashboard.openProjects;
+        this.pausedProjectsCount = this.dashboardGetter.projectDashboard.pausedProjects;
+        this.closedProjectsCount = this.dashboardGetter.projectDashboard.closedProjects;
+        this.terminatedProjectsCount = this.dashboardGetter.projectDashboard.terminatedProjects;
+      });
+
+  }
+
+  private setupProjectsTable(apollo: Apollo) {
+    this.apollo.query({
+      query: gql`
+    {
+      projects{
+        _id,
+        name,
+        status,
+        startDate,
+        endDate,
+        createdAt,
+        updatedAt
+      }
+    }
+  `, fetchPolicy: 'network-only'
+    }).subscribe(result => {
+      this.responseGetter = (result.data);
+      this.projectList = this.responseGetter.projects;
     });
   }
 
- public onProjectEdit(event: any){
-    
-    this.router.navigate(['/editProject'],{queryParams: event, skipLocationChange: true})
-  }
-
-  public navigativeToAddProject(){
+  public navigativeToAddProject() {
     this.router.navigate(['/addProject'])
   }
 
+  public getDateFromTimestamp(args) {
+    try {
+      return new Date(Number.parseInt(args))
+        .toISOString()
+        .substring(0, 10);
+    } catch (err) {
+      return "";
+    }
+
+  }
+
   ngOnInit(): void {
-        
+
   }
 
 }

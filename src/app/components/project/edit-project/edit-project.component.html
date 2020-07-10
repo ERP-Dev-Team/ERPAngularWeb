@@ -16,7 +16,7 @@
     <label for="status" class="col-sm-2 lead">Status</label>
     <div class="col-3">
       <select class="custom-select" formControlName="status" id="inputGroupSelect01">
-        <option *ngFor="let status of statusList">{{status}}</option>
+        <option *ngFor="let status of statusList" value="{{status}}">{{status}}</option>
       </select>
     </div>
   </div>

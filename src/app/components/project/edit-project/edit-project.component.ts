@@ -12,7 +12,7 @@ import gql from 'graphql-tag';
 export class EditProjectComponent implements OnInit {
   editingProjectForm: any;
   projectId: any;
-  statusList = ['Open', 'Closed', 'Paused', 'Terminated'];
+  statusList = ["Open", "Closed", "Paused", "Terminated"];
   projectForm = new FormGroup({
     name: new FormControl('', Validators.required),
     status: new FormControl('', Validators.required),
@@ -28,29 +28,42 @@ export class EditProjectComponent implements OnInit {
     this.route.queryParams.subscribe((params) => {
       this.projectId = params._id;
       console.log(params._id);
-     
-      var sdate = params.startDate !=null ? new Date(Number.parseInt(params.startDate))
-        .toISOString()
-        .substring(0, 10) : null;
-      var edate = params.endDate !=null ? new Date(Number.parseInt(params.endDate))
-        .toISOString()
-        .substring(0, 10) : null;
+
+      var sdate = null;
+      var edate = null;
+      try {
+        sdate = new Date(Number.parseInt(params.startDate)).toISOString().substring(0, 10);
+      } catch (err) { }
+      try {
+        edate = new Date(Number.parseInt(params.endDate)).toISOString().substring(0, 10);
+      } catch (err) { }
       this.projectForm.patchValue({
         name: params.name,
-        status: JSON.stringify(params.status),
+        status: params.status,
         startDate: sdate,
         endDate: edate,
       });
     });
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 
   onSubmit() {
     console.log(this.projectForm.value);
 
-    var startDate = '' + new Date(this.projectForm.controls['startDate'].value).getTime();
-    var endDate =  '' + new Date(this.projectForm.controls['endDate'].value).getTime();
+    var startDate = new Date(this.projectForm.controls['startDate'].value).getTime();
+    var endDate = new Date(this.projectForm.controls['endDate'].value).getTime();
+
+    var startDateStr = "";
+    var endDateStr = "";
+
+    if (startDate > 0) {
+      startDateStr = '' + new Date(this.projectForm.controls['startDate'].value).getTime();
+    }
+    if (endDate > 0) {
+      endDateStr = '' + new Date(this.projectForm.controls['endDate'].value).getTime();
+    }
+
     var status = this.projectForm.controls['status'].value;
     var EDIT_PROJECT = gql`
       mutation editProjectFunction(
@@ -78,11 +91,11 @@ export class EditProjectComponent implements OnInit {
       .mutate({
         mutation: EDIT_PROJECT,
         variables: {
-          projectId: this.projectId ,
+          projectId: this.projectId,
           status: status,
           name: this.projectForm.controls['name'].value,
-          startDate: startDate ,
-          endDate: endDate,
+          startDate: startDateStr,
+          endDate: endDateStr,
         },
       })
       .subscribe(
