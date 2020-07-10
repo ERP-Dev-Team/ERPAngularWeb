@@ -60,18 +60,18 @@ private getAvailableItemCategories(){
 }
 
 /*
-  to get the required designation ID  
+  to get the required Item ID  
   */
- private getUnitbyId(){
+ private getItembyId(){
   this.route.queryParams.subscribe(params =>{
       this.itemId = params['itemId']
   })
-  this.queryUnitBasedOnId();
+  this.queryItemBasedOnId();
 }
 
 
-private queryUnitBasedOnId(){
-this.apollo.watchQuery({
+private queryItemBasedOnId(){
+this.apollo.query({
    query: gql`
    query getItemById($itemId: ID!){
     item(_id: $itemId ){
@@ -93,11 +93,14 @@ this.apollo.watchQuery({
       updatedAt
     }
   }
-`, variables:{
+`, fetchPolicy: 'network-only',
+variables:{
   itemId: this.itemId
 }
-}).valueChanges.subscribe( result =>{
-     this.responseGetter = result.data;   
+}).subscribe( result =>{
+     this.responseGetter = result.data;
+     console.log(this.responseGetter)
+     console.log("ID's" + this.responseGetter.item.itemCategory._id + this.responseGetter.item.unit._id)   
      this.itemCategoryId = this.responseGetter.item.itemCategory._id;
      this.unitId =  this.responseGetter.item.unit._id;
      this.itemForm.patchValue({
@@ -187,7 +190,7 @@ private updateItem(){
  }
 
   ngOnInit(): void {
-    this.getUnitbyId();
+    this.getItembyId();
 
   }
 

@@ -18,7 +18,7 @@ export const navItems: NavList[] = [
   { path: '/viewItem', icon: "../../../assets/menuicons/ic_items.png", menuName: ' Items' },
   { path: '/viewUnit', icon: "../../../assets/menuicons/ic_units.png", menuName: ' Units' },
   { path: '/viewProject', icon: "../../../assets/menuicons/ic_suppliers.png", menuName: ' Suppliers' },
-  { path: '/viewProject', icon: "../../../assets/menuicons/ic_users.png", menuName: 'Users' },
+  { path: '/viewUser', icon: "../../../assets/menuicons/ic_users.png", menuName: 'Users' },
   { path: '/viewProject', icon: "../../../assets/menuicons/ic_vehicles.png", menuName: 'Vehicles' },
   { path: '/viewProject', icon: "../../../assets/menuicons/ic_vehicletypes.png", menuName: 'Vehicle Types' },
   
