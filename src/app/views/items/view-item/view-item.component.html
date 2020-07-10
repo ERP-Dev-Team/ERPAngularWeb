@@ -15,7 +15,7 @@
         <th scope="col">#</th>
         <th scope="col" class="text-dark">Item Name</th>
         <th scope="col" class="text-dark">Item Category</th>
-        <th scope="col" class="text-dark">Unit Name</th>
+        <!-- <th scope="col" class="text-dark">Unit Name</th> -->
         <th scope="col" class="text-dark">Item Code</th>
         <th scope="col" class="text-dark">Actions</th>
       </tr>
@@ -25,7 +25,7 @@
         <th scope="row">{{itemsList.indexOf(item) +1}}</th>
         <td class="text-primary">{{item.name}}</td>
         <td class="text-primary">{{item.itemCategory.name}}</td>
-        <td class="text-primary">{{item.unit.name}}</td>
+        <!-- <td class="text-primary">{{item.unit.name}}</td> -->
         <td class="text-primary">{{item.itemCode}}</td>
         <td><button type="submit" (click)="onItemEdit(item)" class="btn btn-success" >Edit</button>
             / <button type="submit"  class="btn btn-danger" >Delete</button> <td> </tr>

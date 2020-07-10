@@ -23,7 +23,9 @@ import { EditItemComponent } from '../../views/items/edit-item/edit-item.compone
 import { AddItemComponent } from '../../views/items/add-item/add-item.component';
 import { AddItemCategoryComponent } from '../../views/itemCategories/add-item-category/add-item-category.component';
 import { EditItemCategoryComponent } from '../../views/itemCategories/edit-item-category/edit-item-category.component';
-
+import { ViewUserComponent } from '../../views/users/view-user/view-user.component';
+import { EditUserComponent } from '../../views/users/edit-user/edit-user.component';
+import { AddUserComponent } from '../../views/users/add-user/add-user.component';
 
 const routes: Routes = [{ path: 'viewItemCategory', component: ViewItemCategoryComponent  },
 { path: 'addProject', component: AddProjectComponent },
@@ -44,6 +46,9 @@ const routes: Routes = [{ path: 'viewItemCategory', component: ViewItemCategoryC
   {path: 'addItem', component: AddItemComponent},
   {path: 'viewItem', component: ViewItemComponent},
   {path: 'editItem', component: EditItemComponent},
+  {path: 'viewUser', component: ViewUserComponent},
+  {path: 'editUser', component: EditUserComponent},
+  {path: 'addUser', component: AddUserComponent}
    
 ];
 

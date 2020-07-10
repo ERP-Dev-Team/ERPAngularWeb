@@ -25,6 +25,9 @@ import { ViewItemCategoryComponent } from '../../views/itemCategories/view-item-
 import { AddItemCategoryComponent } from '../../views/itemCategories/add-item-category/add-item-category.component';
 import { EditItemCategoryComponent } from '../../views/itemCategories/edit-item-category/edit-item-category.component';
 import { AddProjectComponent } from '../../components/project/add-project/add-project.component';
+import { ViewUserComponent } from '../../views/users/view-user/view-user.component';
+import { EditUserComponent } from '../../views/users/edit-user/edit-user.component';
+import { AddUserComponent } from '../../views/users/add-user/add-user.component';
 
 
 @NgModule({
@@ -48,7 +51,7 @@ import { AddProjectComponent } from '../../components/project/add-project/add-pr
     AddItemComponent,
     AddItemCategoryComponent,
     EditItemCategoryComponent, 
-    AddProjectComponent
+    AddProjectComponent, ViewUserComponent, EditUserComponent, AddUserComponent
   
   ],
   imports: [
