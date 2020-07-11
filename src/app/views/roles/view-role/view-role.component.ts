@@ -22,14 +22,14 @@ export class ViewRoleComponent implements OnInit {
   }
 
   private getAvailableRoles(){
-    this.apollo.watchQuery({
+    this.apollo.query({
        query: gql `{
           roles{
             name,
             _id
           }
        }`,
-    }).valueChanges.subscribe( result =>{
+    }).subscribe( result =>{
         this.responseGetter = result.data;
         this.rolesList = this.responseGetter.roles;
     })
@@ -38,6 +38,22 @@ export class ViewRoleComponent implements OnInit {
   public onRoleEdit(role: any){
     this.router.navigate(['/editRole'], { queryParams :{roleId: role._id},skipLocationChange: true})
     console.log(role._id)
+  }
+
+  public isEditAllowed(args){
+    if(args != "ADMIN"){
+    return false;
+    }else{
+      return true;
+    }
+  }
+
+  public isDeleteAllowed(args){
+    if(args != "ADMIN"){
+      return false;
+      }else{
+        return true;
+      }
   }
   
   ngOnInit(): void {

@@ -35,7 +35,7 @@ export class EditDesignationComponent implements OnInit {
    
    private queryDesignationBasedOnId(){
 
-    this.apollo.watchQuery({
+    this.apollo.query({
        query: gql`
          query getDesignationById($designationId: ID!){
           designation(_id: $designationId){
@@ -46,7 +46,7 @@ export class EditDesignationComponent implements OnInit {
     `, variables:{
         designationId: this.designationId
     }
-    }).valueChanges.subscribe( result =>{
+    }).subscribe( result =>{
          this.responseGetter = result.data;
          this.designationForm.patchValue({
           designationName : this.responseGetter.designation.name

@@ -35,7 +35,7 @@ export class EditRoleComponent implements OnInit {
 
 
  private queryRoleBasedOnId(){
-  this.apollo.watchQuery({
+  this.apollo.query({
      query: gql`
       query getRoleById($roleId: ID!){
         role(_id: $roleId){
@@ -46,7 +46,7 @@ export class EditRoleComponent implements OnInit {
   `, variables:{
     roleId: this.roleId
   }
-  }).valueChanges.subscribe( result =>{
+  }).subscribe( result =>{
        this.responseGetter = result.data;
        this.roleForm.patchValue({
         roleName : this.responseGetter.role.name

@@ -14,7 +14,7 @@ export class ViewCampComponent implements OnInit {
   responseGetter: any;
   constructor(private apollo: Apollo, private route: ActivatedRoute ,  private router: Router ) {
     this.apollo
-    .watchQuery({
+    .query({
       query: gql`
         {
           camps{
@@ -31,7 +31,7 @@ export class ViewCampComponent implements OnInit {
         }
       `, 
     })
-    .valueChanges.subscribe(result => {
+    .subscribe(result => {
        this.responseGetter=(result.data);
         this.campList = this.responseGetter.camps;
     });
@@ -49,6 +49,14 @@ export class ViewCampComponent implements OnInit {
 
   
   ngOnInit(): void {
+  }
+
+  public getDateFromTimestamp(args) {
+    try {
+      return new Date(Number.parseInt(args)).toISOString().substring(0, 10);
+    } catch (err) {
+      return '';
+    }
   }
 
 }

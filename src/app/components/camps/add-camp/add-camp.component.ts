@@ -28,7 +28,7 @@ export class AddCampComponent implements OnInit {
     private router: Router
   ) {
     this.apollo
-      .watchQuery({
+      .query({
         query: gql`
           {
             projects {
@@ -43,7 +43,7 @@ export class AddCampComponent implements OnInit {
           }
         `,
       })
-      .valueChanges.subscribe((result) => {
+      .subscribe((result) => {
         this.responseGetter = result.data;
         this.projectList = this.responseGetter.projects;
       });
@@ -52,31 +52,45 @@ export class AddCampComponent implements OnInit {
   onSubmit() {
     console.log(this.campForm.value);
     var campName = this.campForm.controls['name'].value;
+    var address = this.campForm.controls['address'].value;
     var status = this.campForm.controls['status'].value;
-    var startDate = this.campForm.controls['startDate'].value;
-    var endDate = this.campForm.controls['endDate'].value;
+
     var project = this.campForm.controls['project'].value;
     this.projectList.forEach((element) => {
       if (project == element.name) {
         project = element._id;
       }
     });
-    startDate = '' + new Date(startDate).getTime();
-    endDate = '' + new Date(endDate).getTime();
+
+    var startDate = new Date(this.campForm.controls['startDate'].value).getTime();
+    var endDate = new Date(this.campForm.controls['endDate'].value).getTime();
+
+    var startDateStr = "";
+    var endDateStr = "";
+
+    if (startDate > 0) {
+      startDateStr = '' + new Date(this.campForm.controls['startDate'].value).getTime();
+    }
+    if (endDate > 0) {
+      endDateStr = '' + new Date(this.campForm.controls['endDate'].value).getTime();
+    }
+
 
     var CREATE_CAMP = gql`
       mutation createCampFunction(
         $campName: String!
         $status: String!
-        $startDate: String!
-        $endDate: String!
+        $startDate: String
+        $endDate: String
         $project: ID!
+        $address: String
       ) {
         createCamp(
           campInput: {
             name: $campName
             status: $status
             project: $project
+            address: $address
             startDate: $startDate
             endDate: $endDate
           }
@@ -94,8 +108,9 @@ export class AddCampComponent implements OnInit {
           campName: campName,
           project: project,
           status: status,
-          startDate: startDate,
-          endDate: endDate,
+          address: address,
+          startDate: startDateStr,
+          endDate: endDateStr,
         },
       })
       .subscribe(
@@ -104,7 +119,7 @@ export class AddCampComponent implements OnInit {
           console.log('Success');
         },
         (error) => {
-          console.log('there was an error sending the query', error);
+         console.log(JSON.stringify(error));
         }
       );
   }

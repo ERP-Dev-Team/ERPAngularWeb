@@ -22,17 +22,25 @@ export class AddProjectComponent implements OnInit {
     private apollo: Apollo,
     private route: ActivatedRoute,
     private router: Router
-  ) {}
+  ) { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 
   onSubmit() {
     var projectName = this.projectForm.controls['name'].value;
     var status = this.projectForm.controls['status'].value;
-    var startDate = this.projectForm.controls['startDate'].value;
-    var endDate = this.projectForm.controls['endDate'].value;
-    startDate = '' + new Date(startDate).getTime();
-    endDate = '' + new Date(endDate).getTime();
+    var startDate = new Date(this.projectForm.controls['startDate'].value).getTime();
+    var endDate = new Date(this.projectForm.controls['endDate'].value).getTime();
+
+    var startDateStr = "";
+    var endDateStr = "";
+
+    if (startDate > 0) {
+      startDateStr = '' + new Date(this.projectForm.controls['startDate'].value).getTime();
+    }
+    if (endDate > 0) {
+      endDateStr = '' + new Date(this.projectForm.controls['endDate'].value).getTime();
+    }
 
     var CREATE_PROJECT = gql`
       mutation createProjectFunction(
@@ -61,8 +69,8 @@ export class AddProjectComponent implements OnInit {
         variables: {
           projectName: projectName,
           status: status,
-          startDate: startDate,
-          endDate: endDate,
+          startDate: startDateStr,
+          endDate: endDateStr,
         },
       })
       .subscribe(
@@ -71,7 +79,7 @@ export class AddProjectComponent implements OnInit {
           console.log('Success');
         },
         (error) => {
-          console.log('there was an error sending the query', error);
+          console.log(JSON.stringify(error));
         }
       );
   }

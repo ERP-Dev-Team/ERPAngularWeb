@@ -35,7 +35,7 @@ export class EditUnitComponent implements OnInit {
 
 
 private queryUnitBasedOnId(){
-this.apollo.watchQuery({
+this.apollo.query({
    query: gql`
      query getUnitById($unitId: ID!){
       unit(_id: $unitId){
@@ -46,7 +46,7 @@ this.apollo.watchQuery({
 `, variables:{
   unitId: this.unitId
 }
-}).valueChanges.subscribe( result =>{
+}).subscribe( result =>{
      this.responseGetter = result.data;
      this.unitForm.patchValue({
       unitName : this.responseGetter.unit.name

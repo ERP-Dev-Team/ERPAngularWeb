@@ -1,10 +1,7 @@
+ <!-- Page Heading -->
+ <div class="d-sm-flex align-items-center justify-content-between mb-4">
+  <h1 class="h3 mb-0 text-gray-800">Add Item</h1>
 
-<div class="jumbotron">
-    <h1 class="display-4">Items</h1>
-    <p class="lead">Metrics are the preliminary things</p>
-    <hr class="my-2">
-    <a class="btn btn-primary btn-lg button" href="#" role="button">Learn more</a>
-    <br><br><br>
 </div>
 <form class="formContainer" [formGroup]="itemForm" (ngSubmit)="onSubmit()">
         <div class="form-row row">
@@ -34,7 +31,7 @@
               <label for="category" class="lead">Item Category</label>
               <select class="form-control" formControlName="itemCategory" id="itemCategory">
                   <option selected>Choose...</option>
-                  <option *ngFor="let itemCategory of itemCategoryList" (click)="onChangeCategory(itemCategory)">{{itemCategory.name}}</option>
+                  <option *ngFor="let itemCategory of itemCategoryList" value={{itemCategory._id}}>{{itemCategory.name}}</option>
                 </select>
             </div>
           </div>
@@ -48,7 +45,7 @@
               <label for="unit" class="lead">Unit</label>
               <select class="form-control" formControlName="unit" id="unit">
                   <option selected>Choose...</option>
-                  <option *ngFor="let unit of unitsList" (click)="onChangeUnit(unit)" >{{unit.name}}</option>
+                  <option *ngFor="let unit of unitsList" value={{unit._id}}>{{unit.name}}</option>
                 </select>
             </div>
           </div>

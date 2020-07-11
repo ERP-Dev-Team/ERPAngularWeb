@@ -34,26 +34,26 @@ export class EditItemComponent implements OnInit {
 }
 
 private getAvailableUnits(){
-  this.apollo.watchQuery({
+  this.apollo.query({
     query: gql `{
        units{
          _id,
          name
        }
      }`,
- }).valueChanges.subscribe( result =>{
+ }).subscribe( result =>{
      this.responseGetter = result.data;
      this.unitsList = this.responseGetter.units;
  })
 }
 private getAvailableItemCategories(){
-  this.apollo.watchQuery({
+  this.apollo.query({
     query: gql `{
       itemcategories{
         _id,name
       }
      }`,
- }).valueChanges.subscribe( result =>{
+ }).subscribe( result =>{
      this.responseGetter = result.data;
      this.itemCategoryList = this.responseGetter.itemcategories;
  })
@@ -93,7 +93,7 @@ this.apollo.query({
       updatedAt
     }
   }
-`, fetchPolicy: 'network-only',
+`, 
 variables:{
   itemId: this.itemId
 }
@@ -175,19 +175,11 @@ private updateItem(){
                        console.log('Success');
                       },
                 (error) => {
-             console.log('there was an error sending the query', error);
+            console.log(JSON.stringify(error));
              }
           );
         }
  
-
- public onChangeCategory(itemCategory: any){
-   this.itemCategoryId = itemCategory._id
- }  
- 
- public onChangeUnit(unit: any){
-   this.unitId = unit._id
- }
 
   ngOnInit(): void {
     this.getItembyId();

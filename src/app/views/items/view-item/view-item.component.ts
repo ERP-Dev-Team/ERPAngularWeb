@@ -22,7 +22,7 @@ export class ViewItemComponent implements OnInit {
   }
 
   private getAvailableItems(){
-    this.apollo.watchQuery({
+    this.apollo.query({
        query: gql `{
         items{
           _id
@@ -43,7 +43,7 @@ export class ViewItemComponent implements OnInit {
           updatedAt
         }
         }`,
-    }).valueChanges.subscribe( result =>{
+    }).subscribe( result =>{
         this.responseGetter = result.data;
         this.itemsList = this.responseGetter.items;
     })

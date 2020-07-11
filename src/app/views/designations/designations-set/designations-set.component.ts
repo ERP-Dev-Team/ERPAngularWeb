@@ -21,14 +21,14 @@ export class DesignationsSetComponent implements OnInit {
   }
 
   private getAvailableDesignations(){
-    this.apollo.watchQuery({
+    this.apollo.query({
        query: gql `{
           designations{
           _id,
           name,
           }
        }`,
-    }).valueChanges.subscribe( result =>{
+    }).subscribe( result =>{
         this.responseGetter = result.data;
         this.designationsList = this.responseGetter.designations;
     })
