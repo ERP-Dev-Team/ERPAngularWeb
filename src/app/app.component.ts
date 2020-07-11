@@ -14,7 +14,7 @@ export class AppComponent {
   title = 'ERP';
    onPress() :void{
     this.apollo
-    .watchQuery({
+    .query({
       query: gql`
         {
           login(userName:"admin",password:"admin1234"){
@@ -25,7 +25,7 @@ export class AppComponent {
         }
       `,
     })
-    .valueChanges.subscribe(result => {
+    .subscribe(result => {
      console.log(result)
     });                                      
   }

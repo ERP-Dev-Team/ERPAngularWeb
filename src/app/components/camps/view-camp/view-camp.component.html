@@ -1,23 +1,20 @@
 
-<div class="jumbotron">
-  <br><br>
-    <h1 class="display-4">Camps</h1>
-    <p class="lead">These are most significant things for your project</p>
-    <hr class="my-4">
-    <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
-    <br><br><br>
-  </div>
-  <div class="addCampBar">
-    <button (click)="navigativeToAddCamp()" class="btn btn-secondary btn-align">Add Camp</button>
-  </div>
+ <!-- Page Heading -->
+ <div class="d-sm-flex align-items-center justify-content-between mb-4">
+  <h1 class="h3 mb-0 text-gray-800">Camps</h1>
+  <button (click)="navigativeToAddCamp()"  class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-plus fa-sm text-white-50"></i> Add Camp</button>
+
+</div>
   <table class="table table-hover">
     <thead>
       <tr>
         <th class="text-dark" scope="col">#</th>
         <th class="text-dark" scope="col">Name</th>
         <th  class="text-dark" scope="col">Status</th>
-        <th  class="text-dark" scope="col">Address</th>
         <th  class="text-dark" scope="col">Project Name</th>
+        <th  class="text-dark" scope="col">Address</th>
+        <th  class="text-dark" scope="col">Start Date</th>
+        <th  class="text-dark" scope="col">End Date</th>
         <th class="text-dark" scope="col">Actions</th>
       </tr>
     </thead>
@@ -26,8 +23,10 @@
         <th scope="row">{{campList.indexOf(camp) + 1}}</th>
         <td class="text-primary">{{camp.name}}</td>
         <td class="text-primary">{{camp.status}}</td>
-        <td>{{camp.address}}</td>
         <td>{{camp.project.name}}</td>
+        <td>{{camp.address}}</td>
+        <td [innerText]="getDateFromTimestamp(camp.startDate)"></td>
+        <td [innerText]="getDateFromTimestamp(camp.endDate)"></td>
         <td><button type="submit" (click)="onCampEdit(camp)" class="btn btn-primary" >Edit</button><td>
       </tr>
     </tbody>

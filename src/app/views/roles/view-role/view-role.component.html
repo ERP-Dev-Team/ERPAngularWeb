@@ -1,14 +1,10 @@
 
-<div class="jumbotron">
-    <h1 class="display-4">Roles</h1>
-    <p class="lead">Needed for your organisations coherent involvement</p>
-    <hr class="my-2">
-    <a class="btn btn-primary btn-lg button" href="#" role="button">Learn more</a>
-    <br><br><br>
+ <!-- Page Heading -->
+ <div class="d-sm-flex align-items-center justify-content-between mb-4">
+  <h1 class="h3 mb-0 text-gray-800">Roles</h1>
+  <button  (click)="navigativeToAddRole()"   class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-plus fa-sm text-white-50"></i> Add Role</button>
+
 </div>
-<div class="addRoleBar">
-    <button (click)="navigativeToAddRole()" class="btn btn-secondary btn-align" >Add Role</button>
-  </div>
 <table class="table table-hover">
     <thead >
       <tr>
@@ -21,7 +17,16 @@
       <tr *ngFor= "let role of rolesList">
         <th scope="row">{{rolesList.indexOf(role) +1}}</th>
         <td class="text-primary">{{role.name}}</td>
-        <td><button type="submit" (click)="onRoleEdit(role)" class="btn btn-success" >Edit</button>
-            / <button type="submit"  class="btn btn-danger" >Delete</button> <td> </tr>
+        <td>
+
+          <button  *ngIf="!isEditAllowed(role.name)" type="submit" (click)="onRoleEdit(role)"  class="btn btn-info btn-circle">
+            <i class="fas fa-pen"></i>
+          </button>
+
+          &nbsp;
+          <button *ngIf="!isDeleteAllowed(role.name)"  class="btn btn-danger btn-circle">
+            <i class="fas fa-trash"></i>
+          </button>
+        </td>
     </tbody>
   </table>

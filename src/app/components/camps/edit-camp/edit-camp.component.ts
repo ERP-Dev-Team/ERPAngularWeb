@@ -35,10 +35,19 @@ export class EditCampComponent implements OnInit {
 
   onSubmit() {
     console.log(this.campForm.value);
-    var startDate = this.campForm.controls['startDate'].value;
-    var endDate = this.campForm.controls['endDate'].value;
-    startDate = '' + new Date(startDate).getTime();
-    endDate = '' + new Date(endDate).getTime();
+
+    var startDate = new Date(this.campForm.controls['startDate'].value).getTime();
+    var endDate = new Date(this.campForm.controls['endDate'].value).getTime();
+
+    var startDateStr = "";
+    var endDateStr = "";
+
+    if (startDate > 0) {
+      startDateStr = '' + new Date(this.campForm.controls['startDate'].value).getTime();
+    }
+    if (endDate > 0) {
+      endDateStr = '' + new Date(this.campForm.controls['endDate'].value).getTime();
+    }
 
     var EDIT_CAMP = gql`
       mutation editCampFunction(
@@ -48,6 +57,7 @@ export class EditCampComponent implements OnInit {
         $endDate: String!
         $project: ID!
         $campId: ID!
+        $address: String
       ) {
         updateCamp(
           _id: $campId
@@ -56,6 +66,7 @@ export class EditCampComponent implements OnInit {
           project: $project
           startDate: $startDate
           endDate: $endDate
+          address: $address
         ) {
           name
           status
@@ -73,9 +84,10 @@ export class EditCampComponent implements OnInit {
           campName:  this.campForm.controls['name'].value,
           project : this.projectId,
           status: this.campForm.controls['status'].value,
-          startDate: startDate,
-          endDate: endDate,
+          startDate: startDateStr,
+          endDate: endDateStr,
           campId: this.campId, 
+          address: this.campForm.controls['address'].value,
         },
       })
       .subscribe(
@@ -84,7 +96,7 @@ export class EditCampComponent implements OnInit {
           console.log('Success');
         },
         (error) => {
-          console.log('there was an error sending the query', error);
+          console.log(JSON.stringify(error));
         }
       );
   }
@@ -92,7 +104,7 @@ export class EditCampComponent implements OnInit {
   /** Get Project List to display the available projects */
   private getProjectsList() {
     this.apollo
-      .watchQuery({
+      .query({
         query: gql`
           {
             projects {
@@ -107,7 +119,7 @@ export class EditCampComponent implements OnInit {
           }
         `,
       })
-      .valueChanges.subscribe((result) => {
+      .subscribe((result) => {
         this.responseGetter = result.data;
         this.projectList = this.responseGetter.projects;
       });
@@ -123,7 +135,7 @@ export class EditCampComponent implements OnInit {
 
   private queryBasedOnId() {
     this.apollo
-      .watchQuery({
+      .query({
         query: gql`
           query getCampById($campId: ID!) {
             camp(_id: $campId) {
@@ -151,15 +163,17 @@ export class EditCampComponent implements OnInit {
           campId: this.campId,
         },
       })
-      .valueChanges.subscribe((result) => {
+      .subscribe((result) => {
         this.responseGetter = result.data;
         this.projectId = this.responseGetter.camp.project._id;
-        var startdate = (this.responseGetter.camp.startDate != null) ? new Date(Number.parseInt(this.responseGetter.camp.startDate))
-        .toISOString()
-        .substring(0, 10) : null;
-      var enddate = (this.responseGetter.camp.endDate != null) ? new Date(Number.parseInt(this.responseGetter.camp.endDate))
-        .toISOString()
-        .substring(0, 10) : null;
+        var startdate = null;
+        var enddate = null;
+        try {
+          startdate = new Date(Number.parseInt(this.responseGetter.camp.startDate)).toISOString().substring(0, 10);
+        } catch (err) { }
+        try {
+          enddate = new Date(Number.parseInt(this.responseGetter.camp.endDate)).toISOString().substring(0, 10);
+        } catch (err) { }
 
         this.campForm.patchValue({
           name: this.responseGetter.camp.name,

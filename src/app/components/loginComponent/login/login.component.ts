@@ -22,7 +22,7 @@ export class LoginComponent implements OnInit {
    console.log(this.loginForm.controls['userName'].value)
 
     this.apollo
-    .watchQuery({
+    .query({
       query: gql`
       query getUser($userName:  String!, $password: String!){
         login(userName: $userName,password: $password){
@@ -37,7 +37,7 @@ export class LoginComponent implements OnInit {
         password: this.loginForm.controls['passWord'].value
       }
     })
-    .valueChanges.subscribe(result => {
+    .subscribe(result => {
     this.router.navigate(['/viewProject'])
     console.log("Success")
      

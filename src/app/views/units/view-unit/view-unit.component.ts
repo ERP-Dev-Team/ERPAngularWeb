@@ -25,14 +25,14 @@ export class ViewUnitComponent implements OnInit {
   }
 
   private getAvailableUnits(){
-    this.apollo.watchQuery({
+    this.apollo.query({
        query: gql `{
           units{
             _id,
             name
           }
         }`,
-    }).valueChanges.subscribe( result =>{
+    }).subscribe( result =>{
         this.responseGetter = result.data;
         this.unitsList = this.responseGetter.units;
     })

@@ -1,10 +1,8 @@
-
-<div class="jumbotron">
-    <h1 class="display-4">Camps</h1>
-    <p class="lead">These are most significant things for your project</p>
-    <hr class="my-4">
-    <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
-  </div>
+ <!-- Page Heading -->
+ <div class="d-sm-flex align-items-center justify-content-between mb-4">
+  <h1 class="h3 mb-0 text-gray-800">Edit Camp</h1>
+ 
+</div>
 
   <form class="formContainer" [formGroup]="campForm" (ngSubmit)="onSubmit()">
     <div class="form-row row">
@@ -15,8 +13,8 @@
       <div class="form-group col-md-3">
         <label for="status" class="lead">Status</label>
         <select class="custom-select" formControlName="status" id="status">
-            <option selected>Choose...</option>
-            <option *ngFor="let status of statusList" >{{status}}</option>
+            <!-- <option selected>Choose...</option> -->
+            <option *ngFor="let status of statusList" value={{status}}>{{status}}</option>
           </select>
       </div>
     </div>
