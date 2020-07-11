@@ -23,18 +23,22 @@
   
   <!-- Content Row -->
   <div class="row justify-content-md-center">
-    <div class="col-lg-9 mb-4">
+    <div class="col-lg-12 mb-4">
       <div class="card">
         <div class="card-body">
           <h5 class="card-title text-center text-blue-800">User Details</h5>
           <div class="dropdown-divider"></div>
           <br />
-          <form class="formContainer" [formGroup]="userForm" (ngSubmit)="addUser()">
-            <div class="form-group row">
+          <form
+            class="formContainer"
+            [formGroup]="userForm"
+            (ngSubmit)="addUser()"
+          >
+            <div class="form-group row justify-content-md-center">
               <label for="colFormLabelSm" class="col-sm-4 col-form-label"
                 >User Name:</label
               >
-              <div class="col-md-5 col-sm-10">
+              <div class="col-lg-4 col-md-6 col-sm-10 col-sm-10">
                 <div class="input-group mb-3">
                   <div class="input-group-prepend">
                     <span class="input-group-text" id="basic-addon1"
@@ -62,11 +66,11 @@
                 </div>
               </div>
             </div>
-            <div class="form-group row">
+            <div class="form-group row justify-content-md-center">
               <label for="colFormLabelSm" class="col-sm-4 col-form-label"
                 >Password:</label
               >
-              <div class="col-md-5 col-sm-10">
+              <div class="col-lg-4 col-md-6 col-sm-10 col-sm-10">
                 <div class="input-group mb-3">
                   <div class="input-group-prepend">
                     <span class="input-group-text" id="basic-addon1"
@@ -94,11 +98,11 @@
                 </div>
               </div>
             </div>
-            <div class="form-group row">
+            <div class="form-group row justify-content-md-center">
               <label for="colFormLabelSm" class="col-sm-4 col-form-label"
                 >Confirm Password:</label
               >
-              <div class="col-md-5 col-sm-10">
+              <div class="col-lg-4 col-md-6 col-sm-10 col-sm-10">
                 <div class="input-group mb-3">
                   <div class="input-group-prepend">
                     <span class="input-group-text" id="basic-addon1"
@@ -125,11 +129,12 @@
                 </div>
               </div>
             </div>
+            <br />
             <div class="form-group row">
-              <label for="colFormLabelSm" class="col-sm-4 col-form-label"
+              <label for="colFormLabelSm" class="col-lg-2 col-sm-4 col-form-label"
                 >First Name:</label
               >
-              <div class="col-md-5 col-sm-10">
+              <div class="col-lg-4 col-md-6 col-sm-10">
                 <div class="input-group mb-3">
                   <div class="input-group-prepend">
                     <span class="input-group-text" id="basic-addon1"
@@ -156,12 +161,10 @@
                   />
                 </div>
               </div>
-            </div>
-            <div class="form-group row">
-              <label for="colFormLabelSm" class="col-sm-4 col-form-label"
+              <label for="colFormLabelSm" class="col-lg-2 col-sm-4 col-form-label"
                 >Last Name:</label
               >
-              <div class="col-md-5 col-sm-10">
+              <div class="col-lg-4 col-md-6 col-sm-10">
                 <div class="input-group mb-3">
                   <div class="input-group-prepend">
                     <span class="input-group-text" id="basic-addon1"
@@ -190,10 +193,10 @@
               </div>
             </div>
             <div class="form-group row">
-              <label for="colFormLabelSm" class="col-sm-4 col-form-label"
+              <label for="colFormLabelSm" class="col-lg-2 col-sm-4 col-form-label"
                 >Email Address:</label
               >
-              <div class="col-md-5 col-sm-10">
+              <div class="col-lg-4 col-md-6 col-sm-10">
                 <div class="input-group mb-3">
                   <div class="input-group-prepend">
                     <span class="input-group-text" id="basic-addon1"
@@ -220,12 +223,10 @@
                   />
                 </div>
               </div>
-            </div>
-            <div class="form-group row">
-              <label for="colFormLabelSm" class="col-sm-4 col-form-label"
+              <label for="colFormLabelSm" class="col-lg-2 col-sm-4 col-form-label"
                 >Mobile Number:</label
               >
-              <div class="col-md-5 col-sm-10">
+              <div class="col-lg-4 col-md-6 col-sm-10">
                 <div class="input-group mb-3">
                   <div class="input-group-prepend">
                     <span class="input-group-text" id="basic-addon1"
@@ -254,10 +255,10 @@
               </div>
             </div>
             <div class="form-group row">
-              <label for="colFormLabelSm" class="col-sm-4 col-form-label"
+              <label for="colFormLabelSm" class="col-lg-2 col-sm-4 col-form-label"
                 >Alternate Mobile:</label
               >
-              <div class="col-md-5 col-sm-10">
+              <div class="col-lg-4 col-md-6 col-sm-10">
                 <div class="input-group mb-3">
                   <div class="input-group-prepend">
                     <span class="input-group-text" id="basic-addon1"
@@ -284,12 +285,10 @@
                   />
                 </div>
               </div>
-            </div>
-            <div class="form-group row">
-              <label for="colFormLabelSm" class="col-sm-4 col-form-label"
+              <label for="colFormLabelSm" class="col-lg-2 col-sm-4 col-form-label"
                 >Mobile IMEI:</label
               >
-              <div class="col-md-5 col-sm-10">
+              <div class="col-lg-4 col-md-6 col-sm-10">
                 <div class="input-group mb-3">
                   <div class="input-group-prepend">
                     <span class="input-group-text" id="basic-addon1"
@@ -381,7 +380,7 @@
               </div>
             </div>
             <div class="form-group row">
-              <label for="colFormLabelSm" class="col-sm-4 col-form-label"
+              <label for="colFormLabelSm" class="col-lg-2 col-sm-4 col-form-label"
                 >City:</label
               >
               <div class="col-md-4 col-sm-10">
@@ -411,9 +410,7 @@
                   />
                 </div>
               </div>
-            </div>
-            <div class="form-group row">
-              <label for="colFormLabelSm" class="col-sm-4 col-form-label"
+              <label for="colFormLabelSm" class="col-lg-2 col-sm-4 col-form-label"
                 >State:</label
               >
               <div class="col-md-4 col-sm-10">
@@ -445,7 +442,7 @@
               </div>
             </div>
             <div class="form-group row">
-              <label for="colFormLabelSm" class="col-sm-4 col-form-label"
+              <label for="colFormLabelSm" class="col-lg-2 col-sm-4 col-form-label"
                 >Country:</label
               >
               <div class="col-md-4 col-sm-10">
@@ -475,9 +472,7 @@
                   />
                 </div>
               </div>
-            </div>
-            <div class="form-group row">
-              <label for="colFormLabelSm" class="col-sm-4 col-form-label"
+              <label for="colFormLabelSm" class="col-lg-2 col-sm-4 col-form-label"
                 >Zip Code:</label
               >
               <div class="col-md-4 col-sm-10">
@@ -509,10 +504,10 @@
               </div>
             </div>
             <div class="form-group row">
-              <label for="colFormLabelSm" class="col-sm-4 col-form-label"
+              <label for="colFormLabelSm" class="col-lg-2 col-sm-4 col-form-label"
                 >Joining Place:</label
               >
-              <div class="col-md-5 col-sm-10">
+              <div class="col-lg-4 col-md-6 col-sm-10">
                 <div class="input-group mb-3">
                   <div class="input-group-prepend">
                     <span class="input-group-text" id="basic-addon1"
@@ -539,12 +534,10 @@
                   />
                 </div>
               </div>
-            </div>
-            <div class="form-group row">
-              <label for="colFormLabelSm" class="col-sm-4 col-form-label"
+              <label for="colFormLabelSm" class="col-lg-2 col-sm-4 col-form-label"
                 >Joining Date:</label
               >
-              <div class="col-md-5 col-sm-10">
+              <div class="col-lg-4 col-md-6 col-sm-10">
                 <div class="input-group mb-3">
                   <div class="input-group-prepend">
                     <span class="input-group-text" id="basic-addon1"
@@ -581,10 +574,10 @@
               </div>
             </div>
             <div class="form-group row">
-              <label for="colFormLabelSm" class="col-sm-4 col-form-label"
+              <label for="colFormLabelSm" class="col-lg-2 col-sm-4 col-form-label"
                 >Date of Birth:</label
               >
-              <div class="col-md-5 col-sm-10">
+              <div class="col-lg-4 col-md-6 col-sm-10">
                 <div class="input-group mb-3">
                   <div class="input-group-prepend">
                     <span class="input-group-text" id="basic-addon1"
@@ -619,12 +612,10 @@
                   />
                 </div>
               </div>
-            </div>
-            <div class="form-group row">
-              <label for="colFormLabelSm" class="col-sm-4 col-form-label"
+              <label for="colFormLabelSm" class="col-lg-2 col-sm-4 col-form-label"
                 >Qualification:</label
               >
-              <div class="col-md-5 col-sm-10">
+              <div class="col-lg-4 col-md-6 col-sm-10">
                 <div class="input-group mb-3">
                   <div class="input-group-prepend">
                     <span class="input-group-text" id="basic-addon1"
@@ -653,10 +644,10 @@
               </div>
             </div>
             <div class="form-group row">
-              <label for="colFormLabelSm" class="col-sm-4 col-form-label"
+              <label for="colFormLabelSm" class="col-lg-2 col-sm-4 col-form-label"
                 >Salary:</label
               >
-              <div class="col-md-5 col-sm-10">
+              <div class="col-lg-4 col-md-6 col-sm-10">
                 <div class="input-group mb-3">
                   <div class="input-group-prepend">
                     <span class="input-group-text" id="basic-addon1"
@@ -687,12 +678,10 @@
                   />
                 </div>
               </div>
-            </div>
-            <div class="form-group row">
-              <label for="colFormLabelSm" class="col-sm-4 col-form-label"
+              <label for="colFormLabelSm" class="col-lg-2 col-sm-4 col-form-label"
                 >Batta:</label
               >
-              <div class="col-md-5 col-sm-10">
+              <div class="col-lg-4 col-md-6 col-sm-10">
                 <div class="input-group mb-3">
                   <div class="input-group-prepend">
                     <span class="input-group-text" id="basic-addon1"
@@ -725,10 +714,10 @@
               </div>
             </div>
             <div class="form-group row">
-              <label for="colFormLabelSm" class="col-sm-4 col-form-label"
+              <label for="colFormLabelSm" class="col-lg-2 col-sm-4 col-form-label"
                 >Salary Effective Date:</label
               >
-              <div class="col-md-5 col-sm-10">
+              <div class="col-lg-4 col-md-6 col-sm-10">
                 <div class="input-group mb-3">
                   <div class="input-group-prepend">
                     <span class="input-group-text" id="basic-addon1"
@@ -763,12 +752,10 @@
                   />
                 </div>
               </div>
-            </div>
-            <div class="form-group row">
-              <label for="colFormLabelSm" class="col-sm-4 col-form-label"
+              <label for="colFormLabelSm" class="col-lg-2 col-sm-4 col-form-label"
                 >Salary Old:</label
               >
-              <div class="col-md-5 col-sm-10">
+              <div class="col-lg-4 col-md-6 col-sm-10">
                 <div class="input-group mb-3">
                   <div class="input-group-prepend">
                     <span class="input-group-text" id="basic-addon1"
@@ -800,11 +787,12 @@
                 </div>
               </div>
             </div>
+  
             <div class="form-group row">
-              <label for="colFormLabelSm" class="col-sm-4 col-form-label"
+              <label for="colFormLabelSm" class="col-lg-2 col-sm-4 col-form-label"
                 >Batta Old:</label
               >
-              <div class="col-md-5 col-sm-10">
+              <div class="col-lg-4 col-md-6 col-sm-10">
                 <div class="input-group mb-3">
                   <div class="input-group-prepend">
                     <span class="input-group-text" id="basic-addon1"
@@ -835,12 +823,10 @@
                   />
                 </div>
               </div>
-            </div>
-            <div class="form-group row">
-              <label for="colFormLabelSm" class="col-sm-4 col-form-label"
+              <label for="colFormLabelSm" class="col-lg-2 col-sm-4 col-form-label"
                 >Login Allowed:</label
               >
-              <div class="col-md-5 col-sm-10">
+              <div class="col-lg-4 col-md-6 col-sm-10">
                 <div class="input-group mb-3">
                   <div class="form-check">
                     <input
@@ -857,10 +843,10 @@
               </div>
             </div>
             <div class="form-group row">
-              <label for="colFormLabelSm" class="col-sm-4 col-form-label"
+              <label for="colFormLabelSm" class="col-lg-2 col-sm-4 col-form-label"
                 >Reference Person:</label
               >
-              <div class="col-md-5 col-sm-10">
+              <div class="col-lg-4 col-md-6 col-sm-10">
                 <div class="input-group mb-3">
                   <div class="input-group-prepend">
                     <span class="input-group-text" id="basic-addon1"
@@ -887,12 +873,10 @@
                   />
                 </div>
               </div>
-            </div>
-            <div class="form-group row">
-              <label for="colFormLabelSm" class="col-sm-4 col-form-label"
+              <label for="colFormLabelSm" class="col-lg-2 col-sm-4 col-form-label"
                 >Reference Person Phone:</label
               >
-              <div class="col-md-5 col-sm-10">
+              <div class="col-lg-4 col-md-6 col-sm-10">
                 <div class="input-group mb-3">
                   <div class="input-group-prepend">
                     <span class="input-group-text" id="basic-addon1"
@@ -952,31 +936,12 @@
                 </div>
               </div>
             </div>
+            <div class="form-group row"></div>
             <div class="form-group row">
-              <label for="colFormLabelSm" class="col-sm-4 col-form-label"
-                >IMEI Allowed:</label
-              >
-              <div class="col-md-5 col-sm-10">
-                <div class="input-group mb-3">
-                  <div class="form-check">
-                    <input
-                      class="form-check-input"
-                      type="checkbox"
-                      formControlName="IMEIAllowed"
-                      id="defaultCheck1"
-                    />
-                    <label class="form-check-label" for="defaultCheck1">
-                      Yes/No
-                    </label>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="form-group row">
-              <label for="colFormLabelSm" class="col-sm-4 col-form-label"
+              <label for="colFormLabelSm" class="col-lg-2 col-sm-4 col-form-label"
                 >Bank Account Number:</label
               >
-              <div class="col-md-5 col-sm-10">
+              <div class="col-lg-4 col-md-6 col-sm-10">
                 <div class="input-group mb-3">
                   <div class="input-group-prepend">
                     <span class="input-group-text" id="basic-addon1"
@@ -1007,12 +972,10 @@
                   />
                 </div>
               </div>
-            </div>
-            <div class="form-group row">
-              <label for="colFormLabelSm" class="col-sm-4 col-form-label"
+              <label for="colFormLabelSm" class="col-lg-2 col-sm-4 col-form-label"
                 >Bank Name:</label
               >
-              <div class="col-md-5 col-sm-10">
+              <div class="col-lg-4 col-md-6 col-sm-10">
                 <div class="input-group mb-3">
                   <div class="input-group-prepend">
                     <span class="input-group-text" id="basic-addon1"
@@ -1045,10 +1008,10 @@
               </div>
             </div>
             <div class="form-group row">
-              <label for="colFormLabelSm" class="col-sm-4 col-form-label"
+              <label for="colFormLabelSm" class="col-lg-2 col-sm-4 col-form-label"
                 >Bank Branch Name:</label
               >
-              <div class="col-md-5 col-sm-10">
+              <div class="col-lg-4 col-md-6 col-sm-10">
                 <div class="input-group mb-3">
                   <div class="input-group-prepend">
                     <span class="input-group-text" id="basic-addon1"
@@ -1079,12 +1042,10 @@
                   />
                 </div>
               </div>
-            </div>
-            <div class="form-group row">
-              <label for="colFormLabelSm" class="col-sm-4 col-form-label"
+              <label for="colFormLabelSm" class="col-lg-2 col-sm-4 col-form-label"
                 >Bank Branch City:</label
               >
-              <div class="col-md-5 col-sm-10">
+              <div class="col-lg-4 col-md-6 col-sm-10">
                 <div class="input-group mb-3">
                   <div class="input-group-prepend">
                     <span class="input-group-text" id="basic-addon1"
@@ -1117,10 +1078,10 @@
               </div>
             </div>
             <div class="form-group row">
-              <label for="colFormLabelSm" class="col-sm-4 col-form-label"
+              <label for="colFormLabelSm" class="col-lg-2 col-sm-4 col-form-label"
                 >Bank IFSC Code:</label
               >
-              <div class="col-md-5 col-sm-10">
+              <div class="col-lg-4 col-md-6 col-sm-10">
                 <div class="input-group mb-3">
                   <div class="input-group-prepend">
                     <span class="input-group-text" id="basic-addon1"
@@ -1151,12 +1112,10 @@
                   />
                 </div>
               </div>
-            </div>
-            <div class="form-group row">
-              <label for="colFormLabelSm" class="col-sm-4 col-form-label"
+              <label for="colFormLabelSm" class="col-lg-2 col-sm-4 col-form-label"
                 >Bank Account Holder Name:</label
               >
-              <div class="col-md-5 col-sm-10">
+              <div class="col-lg-4 col-md-6 col-sm-10">
                 <div class="input-group mb-3">
                   <div class="input-group-prepend">
                     <span class="input-group-text" id="basic-addon1"
@@ -1189,10 +1148,10 @@
               </div>
             </div>
             <div class="form-group row">
-              <label for="colFormLabelSm" class="col-sm-4 col-form-label"
+              <label for="colFormLabelSm" class="col-lg-2 col-sm-4 col-form-label"
                 >Designation:</label
               >
-              <div class="col-md-5 col-sm-10">
+              <div class="col-lg-4 col-md-6 col-sm-10">
                 <div class="input-group mb-3">
                   <div class="input-group-prepend">
                     <span class="input-group-text" id="basic-addon1"
@@ -1215,7 +1174,7 @@
                     formControlName="designation"
                     id="designation"
                   >
-                  <option selected>Choose...</option>
+                    <option selected>Choose...</option>
                     <option
                       *ngFor="let designation of designationsList"
                       (click)="onChangeDesignation(designation)"
@@ -1224,12 +1183,34 @@
                   </select>
                 </div>
               </div>
-              
+              <label for="colFormLabelSm" class="col-lg-2 col-sm-4 col-form-label"
+                >IMEI Allowed:</label
+              >
+              <div class="col-lg-4 col-md-6 col-sm-10">
+                <div class="input-group mb-3">
+                  <div class="form-check">
+                    <input
+                      class="form-check-input"
+                      type="checkbox"
+                      formControlName="IMEIAllowed"
+                      id="defaultCheck1"
+                    />
+                    <label class="form-check-label" for="defaultCheck1">
+                      Yes/No
+                    </label>
+                  </div>
+                </div>
+              </div>
             </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
+            
+            <div class="form-group row justify-content-md-center">
+              <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+            
           </form>
         </div>
       </div>
     </div>
     <div></div>
-  </div>  
+  </div>
+  
