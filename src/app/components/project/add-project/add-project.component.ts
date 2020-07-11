@@ -3,6 +3,9 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Apollo } from 'apollo-angular';
 import gql from 'graphql-tag';
+import { DateHandler } from '../../../handlerClass/date-handler';
+
+var datehandler = new DateHandler();
 
 @Component({
   selector: 'app-add-project',
@@ -22,25 +25,18 @@ export class AddProjectComponent implements OnInit {
     private apollo: Apollo,
     private route: ActivatedRoute,
     private router: Router
-  ) { }
+  ) {}
 
-  ngOnInit(): void { }
+  ngOnInit(): void {}
 
   onSubmit() {
-    var projectName = this.projectForm.controls['name'].value;
-    var status = this.projectForm.controls['status'].value;
-    var startDate = new Date(this.projectForm.controls['startDate'].value).getTime();
-    var endDate = new Date(this.projectForm.controls['endDate'].value).getTime();
 
-    var startDateStr = "";
-    var endDateStr = "";
-
-    if (startDate > 0) {
-      startDateStr = '' + new Date(this.projectForm.controls['startDate'].value).getTime();
-    }
-    if (endDate > 0) {
-      endDateStr = '' + new Date(this.projectForm.controls['endDate'].value).getTime();
-    }
+    var startDateStr = datehandler.convertDatetoTimeStamp(
+      this.projectForm.controls['startDate'].value
+    );
+    var endDateStr = datehandler.convertDatetoTimeStamp(
+      this.projectForm.controls['endDate'].value
+    );
 
     var CREATE_PROJECT = gql`
       mutation createProjectFunction(
@@ -67,8 +63,8 @@ export class AddProjectComponent implements OnInit {
       .mutate({
         mutation: CREATE_PROJECT,
         variables: {
-          projectName: projectName,
-          status: status,
+          projectName: this.projectForm.controls['name'].value,
+          status: this.projectForm.controls['status'].value,
           startDate: startDateStr,
           endDate: endDateStr,
         },

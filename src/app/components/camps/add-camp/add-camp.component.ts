@@ -3,6 +3,9 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Apollo } from 'apollo-angular';
 import gql from 'graphql-tag';
+import { DateHandler } from '../../../handlerClass/date-handler';
+
+var datehandler = new DateHandler();
 
 @Component({
   selector: 'app-add-camp',
@@ -51,10 +54,6 @@ export class AddCampComponent implements OnInit {
 
   onSubmit() {
     console.log(this.campForm.value);
-    var campName = this.campForm.controls['name'].value;
-    var address = this.campForm.controls['address'].value;
-    var status = this.campForm.controls['status'].value;
-
     var project = this.campForm.controls['project'].value;
     this.projectList.forEach((element) => {
       if (project == element.name) {
@@ -62,19 +61,12 @@ export class AddCampComponent implements OnInit {
       }
     });
 
-    var startDate = new Date(this.campForm.controls['startDate'].value).getTime();
-    var endDate = new Date(this.campForm.controls['endDate'].value).getTime();
-
-    var startDateStr = "";
-    var endDateStr = "";
-
-    if (startDate > 0) {
-      startDateStr = '' + new Date(this.campForm.controls['startDate'].value).getTime();
-    }
-    if (endDate > 0) {
-      endDateStr = '' + new Date(this.campForm.controls['endDate'].value).getTime();
-    }
-
+    var startDateStr = datehandler.convertDatetoTimeStamp(
+      this.campForm.controls['startDate'].value
+    );
+    var endDateStr = datehandler.convertDatetoTimeStamp(
+      this.campForm.controls['endDate'].value
+    );
 
     var CREATE_CAMP = gql`
       mutation createCampFunction(
@@ -105,10 +97,10 @@ export class AddCampComponent implements OnInit {
       .mutate({
         mutation: CREATE_CAMP,
         variables: {
-          campName: campName,
+          campName: this.campForm.controls['name'].value,
           project: project,
-          status: status,
-          address: address,
+          status: this.campForm.controls['status'].value,
+          address: this.campForm.controls['address'].value,
           startDate: startDateStr,
           endDate: endDateStr,
         },
@@ -119,7 +111,7 @@ export class AddCampComponent implements OnInit {
           console.log('Success');
         },
         (error) => {
-         console.log(JSON.stringify(error));
+          console.log(JSON.stringify(error));
         }
       );
   }

@@ -3,6 +3,9 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Apollo } from 'apollo-angular';
 import gql from 'graphql-tag';
+import { DateHandler } from '../../../handlerClass/date-handler';
+
+var datehandler = new DateHandler();
 
 @Component({
   selector: 'app-edit-project',
@@ -12,7 +15,7 @@ import gql from 'graphql-tag';
 export class EditProjectComponent implements OnInit {
   editingProjectForm: any;
   projectId: any;
-  statusList = ["Open", "Closed", "Paused", "Terminated"];
+  statusList = ['Open', 'Closed', 'Paused', 'Terminated'];
   projectForm = new FormGroup({
     name: new FormControl('', Validators.required),
     status: new FormControl('', Validators.required),
@@ -29,14 +32,8 @@ export class EditProjectComponent implements OnInit {
       this.projectId = params._id;
       console.log(params._id);
 
-      var sdate = null;
-      var edate = null;
-      try {
-        sdate = new Date(Number.parseInt(params.startDate)).toISOString().substring(0, 10);
-      } catch (err) { }
-      try {
-        edate = new Date(Number.parseInt(params.endDate)).toISOString().substring(0, 10);
-      } catch (err) { }
+      var sdate = datehandler.convertTimeStampToDate(params.startDate);
+      var edate = datehandler.convertTimeStampToDate(params.endDate);
       this.projectForm.patchValue({
         name: params.name,
         status: params.status,
@@ -46,23 +43,17 @@ export class EditProjectComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {}
 
   onSubmit() {
     console.log(this.projectForm.value);
 
-    var startDate = new Date(this.projectForm.controls['startDate'].value).getTime();
-    var endDate = new Date(this.projectForm.controls['endDate'].value).getTime();
-
-    var startDateStr = "";
-    var endDateStr = "";
-
-    if (startDate > 0) {
-      startDateStr = '' + new Date(this.projectForm.controls['startDate'].value).getTime();
-    }
-    if (endDate > 0) {
-      endDateStr = '' + new Date(this.projectForm.controls['endDate'].value).getTime();
-    }
+    var startDateStr = datehandler.convertDatetoTimeStamp(
+      this.projectForm.controls['startDate'].value
+    );
+    var endDateStr = datehandler.convertDatetoTimeStamp(
+      this.projectForm.controls['endDate'].value
+    );
 
     var status = this.projectForm.controls['status'].value;
     var EDIT_PROJECT = gql`

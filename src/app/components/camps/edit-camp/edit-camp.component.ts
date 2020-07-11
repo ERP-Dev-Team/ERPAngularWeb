@@ -3,6 +3,9 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Apollo } from 'apollo-angular';
 import gql from 'graphql-tag';
+import { DateHandler } from '../../../handlerClass/date-handler';
+
+var datehandler = new DateHandler();
 
 @Component({
   selector: 'app-edit-camp',
@@ -36,18 +39,12 @@ export class EditCampComponent implements OnInit {
   onSubmit() {
     console.log(this.campForm.value);
 
-    var startDate = new Date(this.campForm.controls['startDate'].value).getTime();
-    var endDate = new Date(this.campForm.controls['endDate'].value).getTime();
-
-    var startDateStr = "";
-    var endDateStr = "";
-
-    if (startDate > 0) {
-      startDateStr = '' + new Date(this.campForm.controls['startDate'].value).getTime();
-    }
-    if (endDate > 0) {
-      endDateStr = '' + new Date(this.campForm.controls['endDate'].value).getTime();
-    }
+    var startDateStr = datehandler.convertDatetoTimeStamp(
+      this.campForm.controls['startDate'].value
+    );
+    var endDateStr = datehandler.convertDatetoTimeStamp(
+      this.campForm.controls['endDate'].value
+    );
 
     var EDIT_CAMP = gql`
       mutation editCampFunction(
@@ -70,7 +67,14 @@ export class EditCampComponent implements OnInit {
         ) {
           name
           status
-          project{name,status,startDate,endDate,createdAt,updatedAt}
+          project {
+            name
+            status
+            startDate
+            endDate
+            createdAt
+            updatedAt
+          }
           startDate
           endDate
         }
@@ -81,12 +85,12 @@ export class EditCampComponent implements OnInit {
       .mutate({
         mutation: EDIT_CAMP,
         variables: {
-          campName:  this.campForm.controls['name'].value,
-          project : this.projectId,
+          campName: this.campForm.controls['name'].value,
+          project: this.projectId,
           status: this.campForm.controls['status'].value,
           startDate: startDateStr,
           endDate: endDateStr,
-          campId: this.campId, 
+          campId: this.campId,
           address: this.campForm.controls['address'].value,
         },
       })
@@ -166,14 +170,12 @@ export class EditCampComponent implements OnInit {
       .subscribe((result) => {
         this.responseGetter = result.data;
         this.projectId = this.responseGetter.camp.project._id;
-        var startdate = null;
-        var enddate = null;
-        try {
-          startdate = new Date(Number.parseInt(this.responseGetter.camp.startDate)).toISOString().substring(0, 10);
-        } catch (err) { }
-        try {
-          enddate = new Date(Number.parseInt(this.responseGetter.camp.endDate)).toISOString().substring(0, 10);
-        } catch (err) { }
+        var startdate = datehandler.convertTimeStampToDate(
+          this.responseGetter.camp.startDate
+        );
+        var enddate = datehandler.convertTimeStampToDate(
+          this.responseGetter.camp.endDate
+        );
 
         this.campForm.patchValue({
           name: this.responseGetter.camp.name,
@@ -186,8 +188,8 @@ export class EditCampComponent implements OnInit {
       });
   }
 
-  public onProjectChange(project : any){
-     this.projectId = project._id;
+  public onProjectChange(project: any) {
+    this.projectId = project._id;
   }
 
   ngOnInit(): void {
