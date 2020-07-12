@@ -15,6 +15,18 @@ const DESIGNATIONSQUERY = gql`
   }
 `;
 
+const CREATEUSERQUERY = gql`
+mutation createUserFunction($userValue: UserInput!){
+  createUser(userInput: $userValue){
+    
+        userName,
+    password,
+    firstName
+  }
+} 
+
+`;
+
 @Component({
   selector: 'app-add-user',
   templateUrl: './add-user.component.html',
@@ -82,12 +94,31 @@ export class AddUserComponent implements OnInit {
       });
   }
 
-  public onChangeDesignation(designation: any) {
-    this.selectedDesignationId = designation._id;
+  public onChangeDesignation(value: any) {
+    // this.selectedDesignationId = designation._id;
+    // console.log("Designation ID" + this.selectedDesignationId)
+    console.log( value)
   }
 
   public addUser() {
     console.log(this.userForm.value);
+    this.createUser()
+  }
+
+  private createUser(){
+    this.apollo.mutate({
+       mutation: CREATEUSERQUERY,
+       variables : {
+        userValue : this.userForm.value
+       }
+    }).subscribe( (result) =>{
+      console.log('Success')
+      this.router.navigateByUrl('/viewUser')  
+    },
+     (error) => {
+       console.log("There is an error sending the query" + JSON.stringify(error))
+     }
+     )
   }
 
   ngOnInit(): void {
