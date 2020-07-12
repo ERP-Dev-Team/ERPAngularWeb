@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {Apollo} from 'apollo-angular';
 import gql from 'graphql-tag';
 import {  Router, ActivatedRoute } from '@angular/router';
+import { Lable } from 'src/app/entity/lable/lable';
 
 @Component({
   selector: 'app-view-camp',
@@ -9,7 +10,7 @@ import {  Router, ActivatedRoute } from '@angular/router';
   styleUrls: ['./view-camp.component.css']
 })
 export class ViewCampComponent implements OnInit {
-
+  lable: any;
   campList: any;
   responseGetter: any;
   constructor(private apollo: Apollo, private route: ActivatedRoute ,  private router: Router ) {
@@ -49,6 +50,9 @@ export class ViewCampComponent implements OnInit {
 
   
   ngOnInit(): void {
+  this.route.queryParams.subscribe( (params) =>{
+    this.lable = params
+  })
   }
 
   public getDateFromTimestamp(args) {

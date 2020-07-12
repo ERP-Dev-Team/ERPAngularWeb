@@ -12,6 +12,7 @@ import { AuthenticationComponent } from './customModules/authentication/authenti
 import { AdminLayoutComponent } from './customModules/admin-layout/admin-layout.component';
 import { AdminLayoutModule } from './customModules/admin-layout/admin-layout.module';
 import { SideBarComponent } from './components/side-bar/side-bar.component';
+import { ComponentLabelComponent } from './components/component-label/component-label.component';
 
 
 

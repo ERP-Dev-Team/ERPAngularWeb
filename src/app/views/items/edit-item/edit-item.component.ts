@@ -105,9 +105,9 @@ variables:{
      this.unitId =  this.responseGetter.item.unit._id;
      this.itemForm.patchValue({
       name : this.responseGetter.item.name,
-      itemCategory : this.responseGetter.item.itemCategory.name,
+      itemCategory : this.responseGetter.item.itemCategory._id,
       itemCode : this.responseGetter.item.itemCode,
-      unit: this.responseGetter.item.unit.name,
+      unit: this.responseGetter.item.unit._id,
       partNumber: this.responseGetter.item.partNumber,
       hsnNumber: this.responseGetter.item.hsnNumber,
       description: this.responseGetter.item.description,
@@ -162,8 +162,8 @@ private updateItem(){
 
                 itemName: this.itemForm.controls['name'].value,
                 itemCode: this.itemForm.controls['itemCode'].value ,
-                unitId: this.unitId,
-                itemCategoryId: this.itemCategoryId,
+                unitId: this.itemForm.controls['unit'].value,
+                itemCategoryId: this.itemForm.controls['itemCategory'].value,
                 description: this.itemForm.controls['description'].value,
                 partNumber: this.itemForm.controls['partNumber'].value,
                 hsnNumber: this.itemForm.controls['hsnNumber'].value,

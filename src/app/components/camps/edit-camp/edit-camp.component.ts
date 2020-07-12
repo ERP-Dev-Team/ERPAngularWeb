@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { Apollo } from 'apollo-angular';
 import gql from 'graphql-tag';
 import { DateHandler } from '../../../handlerClass/date-handler';
@@ -190,9 +190,11 @@ export class EditCampComponent implements OnInit {
 
   public onProjectChange(project: any) {
     this.projectId = project._id;
+  
   }
 
   ngOnInit(): void {
     this.getCampDetailsForEdit();
+    
   }
 }

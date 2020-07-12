@@ -28,6 +28,7 @@ import { AddProjectComponent } from '../../components/project/add-project/add-pr
 import { ViewUserComponent } from '../../views/users/view-user/view-user.component';
 import { EditUserComponent } from '../../views/users/edit-user/edit-user.component';
 import { AddUserComponent } from '../../views/users/add-user/add-user.component';
+import { ComponentLabelComponent } from '../../components/component-label/component-label.component';
 
 
 @NgModule({
@@ -51,7 +52,8 @@ import { AddUserComponent } from '../../views/users/add-user/add-user.component'
     AddItemComponent,
     AddItemCategoryComponent,
     EditItemCategoryComponent, 
-    AddProjectComponent, ViewUserComponent, EditUserComponent, AddUserComponent
+    AddProjectComponent, ViewUserComponent, EditUserComponent, AddUserComponent,
+    ComponentLabelComponent,
   
   ],
   imports: [
