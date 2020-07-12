@@ -38,9 +38,9 @@
       <div class="bg-white py-2 collapse-inner rounded">
         <!-- <h6 class="collapse-header">Custom Components:</h6> -->
         <div *ngFor="let navItem of navItemS">
-        <a routerLinkActive="active" [routerLink]="[navItem.path]"   class="collapse-item">
+        <a routerLinkActive="active" (click)="navigateToModule(navItem)" class="collapse-item">
           <!-- <span><img src="{{navItem.icon}}" class="menu_icon" alt="icon"></span>  -->
-           <span class="nav-link-inner--text">   {{navItem.menuName}} </span></a>
+           <span class="nav-link-inner--text">   {{navItem.name}} </span></a>
            </div>
       </div>
     </div>
