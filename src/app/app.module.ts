@@ -13,6 +13,8 @@ import { AdminLayoutComponent } from './customModules/admin-layout/admin-layout.
 import { AdminLayoutModule } from './customModules/admin-layout/admin-layout.module';
 import { SideBarComponent } from './components/side-bar/side-bar.component';
 import { ComponentLabelComponent } from './components/component-label/component-label.component';
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
+
 
 
 
@@ -33,7 +35,8 @@ import { ComponentLabelComponent } from './components/component-label/component-
     FormsModule,
     ReactiveFormsModule,
     AuthenticationModule,
-    AdminLayoutModule
+    AdminLayoutModule,
+    NgMultiSelectDropDownModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]
