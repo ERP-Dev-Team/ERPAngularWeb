@@ -9,6 +9,11 @@ $( document ).ready(function() {
     };
   });
 
+  var height = $('#content').height();
+  var footerHeight = 76;
+  height = height+footerHeight;
+  $('.sidebar').height(height);
+
   // Close any open menu accordions when window is resized below 768px
   $(window).resize(function() {
     if ($(window).width() < 768) {

@@ -29,6 +29,7 @@ import { ViewUserComponent } from '../../views/users/view-user/view-user.compone
 import { EditUserComponent } from '../../views/users/edit-user/edit-user.component';
 import { AddUserComponent } from '../../views/users/add-user/add-user.component';
 import { ComponentLabelComponent } from '../../components/component-label/component-label.component';
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 
 
 @NgModule({
@@ -61,6 +62,7 @@ import { ComponentLabelComponent } from '../../components/component-label/compon
     AdminLayoutRoutingModule,
     FormsModule,
     ReactiveFormsModule,
+    NgMultiSelectDropDownModule.forRoot(),
   ]
 })
 export class AdminLayoutModule { }

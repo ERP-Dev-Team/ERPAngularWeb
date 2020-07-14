@@ -3,6 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { Apollo } from 'apollo-angular';
 import gql from 'graphql-tag';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { IDropdownSettings } from 'ng-multiselect-dropdown';
 
 const DESIGNATIONSQUERY = gql`
   query {
@@ -13,6 +14,44 @@ const DESIGNATIONSQUERY = gql`
       updatedAt
     }
   }
+`;
+
+const ROLESQUERY = gql`
+query{
+  roles{_id,name,createdAt,updatedAt}
+}
+`;
+
+const MODULESQUERY = gql`
+{
+  modules {
+    _id
+    name
+    caved {
+      _id,
+      create {
+        _id
+        name
+      }
+      approval {
+        _id
+        name
+      }
+      view {
+        _id
+        name
+      }
+      edit {
+        _id
+        name
+      }
+      delete {
+        _id
+        name
+      }
+    }
+  }
+}
 `;
 
 const CREATEUSERQUERY = gql`
@@ -36,6 +75,12 @@ export class AddUserComponent implements OnInit {
   public designationsList: any[];
   private responseGetter: any;
   private selectedDesignationId: any;
+  public selectedRolesList : any[];
+  public dropdownRolesList : any[];
+  public dropdownRolesSettings: IDropdownSettings;
+  public selectedModulesList : any[];
+  public dropdownModulesList : any[];
+  public dropdownModulesSettings: IDropdownSettings;
 
   public userForm = new FormGroup({
     userName: new FormControl('', Validators.required),
@@ -61,13 +106,13 @@ export class AddUserComponent implements OnInit {
     salaryEffectiveDate: new FormControl('', Validators.required),
     salaryOld: new FormControl('', Validators.required),
     battaOld: new FormControl('', Validators.required),
-    loginAllowed: new FormControl('', Validators.required),
+    loginAllowed: new FormControl(true, Validators.required),
     lastLogin: new FormControl('', Validators.required),
     lastLoginDevice: new FormControl('', Validators.required),
     refPerson: new FormControl('', Validators.required),
     refPersonPhone: new FormControl('', Validators.required),
     refPersonAddress: new FormControl('', Validators.required),
-    IMEIAllowed: new FormControl('', Validators.required),
+    IMEIAllowed: new FormControl(false, Validators.required),
     bankAccountNumber: new FormControl('', Validators.required),
     bankName: new FormControl('', Validators.required),
     bankBranchName: new FormControl('', Validators.required),
@@ -75,13 +120,16 @@ export class AddUserComponent implements OnInit {
     bankIIFSCCode: new FormControl('', Validators.required),
     bankAccountHolderName: new FormControl('', Validators.required),
     designation: new FormControl('', Validators.required),
+    modulesAllowed: new FormControl('',Validators.required),
+    rolesAllowed: new FormControl('',Validators.required),
+
   });
 
   constructor(
     private apollo: Apollo,
     private route: ActivatedRoute,
     private router: Router
-  ) {}
+  ) { }
 
   private getAvailableDesignations() {
     this.apollo
@@ -94,34 +142,90 @@ export class AddUserComponent implements OnInit {
       });
   }
 
+  private getAvailableModules() {
+    this.apollo
+      .query({
+        query: MODULESQUERY,
+      })
+      .subscribe((result) => {
+        //console.log(JSON.stringify(result));
+        this.responseGetter = result.data;
+        this.dropdownModulesList = this.responseGetter.modules;
+      });
+  }
+
+  private getAvailableRoles() {
+    this.apollo
+      .query({
+        query: ROLESQUERY,
+      })
+      .subscribe((result) => {
+        //console.log(JSON.stringify(result));
+        this.responseGetter = result.data;
+        this.dropdownRolesList = this.responseGetter.roles;
+      });
+  }
+
   public onChangeDesignation(value: any) {
     // this.selectedDesignationId = designation._id;
     // console.log("Designation ID" + this.selectedDesignationId)
-    console.log( value)
+    console.log(value)
   }
 
   public addUser() {
+    var roleListObjects = this.userForm.controls['rolesAllowed'].value ;
+    var roleListObjectsParsedIds = [];
+    roleListObjects.forEach((element)=>{
+      roleListObjectsParsedIds.push(element._id);
+    });
+    this.userForm.controls['rolesAllowed'].setValue(roleListObjectsParsedIds);
+    
+    var moduleListObjects = this.userForm.controls['modulesAllowed'].value ;
+    var moduleListObjectsParsedIds = [];
+    moduleListObjects.forEach((element)=>{
+      moduleListObjectsParsedIds.push(element._id);
+    });
+    this.userForm.controls['modulesAllowed'].setValue(moduleListObjectsParsedIds);
     console.log(this.userForm.value);
     this.createUser()
   }
 
-  private createUser(){
+  private createUser() {
     this.apollo.mutate({
-       mutation: CREATEUSERQUERY,
-       variables : {
-        userValue : this.userForm.value
-       }
-    }).subscribe( (result) =>{
+      mutation: CREATEUSERQUERY,
+      variables: {
+        userValue: this.userForm.value
+      }
+    }).subscribe((result) => {
       console.log('Success')
-      this.router.navigateByUrl('/viewUser')  
+      this.router.navigateByUrl('/viewUser')
     },
-     (error) => {
-       console.log("There is an error sending the query" + JSON.stringify(error))
-     }
-     )
+      (error) => {
+        console.log("There is an error sending the query" + JSON.stringify(error))
+      }
+    )
   }
 
   ngOnInit(): void {
+    this.dropdownRolesSettings = {
+      singleSelection: false,
+      idField: '_id',
+      textField: 'name',
+      enableCheckAll: false,
+      searchPlaceholderText: 'Search roles',
+      allowSearchFilter: true
+    };
+    this.dropdownModulesSettings = {
+      singleSelection: false,
+      idField: '_id',
+      textField: 'name',
+      enableCheckAll: false,
+      searchPlaceholderText: 'Search modules',
+      allowSearchFilter: true
+    };
+
     this.getAvailableDesignations();
+    this.getAvailableModules();
+    this.getAvailableRoles();
   }
 }
