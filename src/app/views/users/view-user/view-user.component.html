@@ -41,3 +41,28 @@
       </div>
     </div>
   </div> -->
+
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th class="text-dark" scope="col">#</th>
+        <th class="text-dark" scope="col">User Name</th>
+        <th  class="text-dark" scope="col">First name</th>
+        <th  class="text-dark" scope="col">Roles Allowed</th>
+        <th  class="text-dark" scope="col">Camps Allowed</th>
+        <th class="text-dark" scope="col">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of userList">
+        <th scope="row">{{userList.indexOf(user) + 1}}</th>
+        <td class="text-primary">{{user.userName}}</td>
+        <td>{{user.firstName}}</td>
+        <td ><tr *ngFor="let roles of user.rolesAllowed">
+            <td>{{roles.name}}</td>
+        </tr></td>
+        <td></td>
+        <td><button type="submit" (click)="navigateToUser()" class="btn btn-primary" >Edit</button><td>
+      </tr>
+    </tbody>
+  </table>
