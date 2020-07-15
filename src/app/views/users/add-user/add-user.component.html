@@ -12,7 +12,7 @@
         <br />
         <form class="formContainer" [formGroup]="userForm" (ngSubmit)="addUser()">
           <div class="form-group row justify-content-md-center">
-            <label for="colFormLabelSm" class="col-sm-4 col-form-label">User Name:</label>
+            <label for="colFormLabelSm" class="col-sm-4 col-form-label">User Name<sup>*</sup></label>
             <div class="col-lg-4 col-md-6 col-sm-10 col-sm-10">
               <div class="input-group mb-3">
                 <div class="input-group-prepend">
@@ -27,7 +27,7 @@
             </div>
           </div>
           <div class="form-group row justify-content-md-center">
-            <label for="colFormLabelSm" class="col-sm-4 col-form-label">Password:</label>
+            <label for="colFormLabelSm" class="col-sm-4 col-form-label">Password<sup>*</sup></label>
             <div class="col-lg-4 col-md-6 col-sm-10 col-sm-10">
               <div class="input-group mb-3">
                 <div class="input-group-prepend">
@@ -42,7 +42,7 @@
             </div>
           </div>
           <div class="form-group row justify-content-md-center">
-            <label for="colFormLabelSm" class="col-sm-4 col-form-label">Confirm Password:</label>
+            <label for="colFormLabelSm" class="col-sm-4 col-form-label">Confirm Password<sup>*</sup></label>
             <div class="col-lg-4 col-md-6 col-sm-10 col-sm-10">
               <div class="input-group mb-3">
                 <div class="input-group-prepend">
@@ -57,7 +57,7 @@
           </div>
           <br />
           <div class="form-group row">
-            <label for="colFormLabelSm" class="col-lg-2 col-sm-4 col-form-label">First Name:</label>
+            <label for="colFormLabelSm" class="col-lg-2 col-sm-4 col-form-label">First Name<sup>*</sup></label>
             <div class="col-lg-4 col-md-6 col-sm-10">
               <div class="input-group mb-3">
                 <div class="input-group-prepend">
@@ -70,7 +70,7 @@
                   placeholder="First Name" />
               </div>
             </div>
-            <label for="colFormLabelSm" class="col-lg-2 col-sm-4 col-form-label">Last Name:</label>
+            <label for="colFormLabelSm" class="col-lg-2 col-sm-4 col-form-label">Last Name</label>
             <div class="col-lg-4 col-md-6 col-sm-10">
               <div class="input-group mb-3">
                 <div class="input-group-prepend">
@@ -85,7 +85,7 @@
             </div>
           </div>
           <div class="form-group row">
-            <label for="colFormLabelSm" class="col-lg-2 col-sm-4 col-form-label">Email Address:</label>
+            <label for="colFormLabelSm" class="col-lg-2 col-sm-4 col-form-label">Email Address</label>
             <div class="col-lg-4 col-md-6 col-sm-10">
               <div class="input-group mb-3">
                 <div class="input-group-prepend">
@@ -99,7 +99,7 @@
                   placeholder="Email Address" />
               </div>
             </div>
-            <label for="colFormLabelSm" class="col-lg-2 col-sm-4 col-form-label">Mobile Number:</label>
+            <label for="colFormLabelSm" class="col-lg-2 col-sm-4 col-form-label">Mobile Number</label>
             <div class="col-lg-4 col-md-6 col-sm-10">
               <div class="input-group mb-3">
                 <div class="input-group-prepend">
@@ -115,7 +115,7 @@
             </div>
           </div>
           <div class="form-group row">
-            <label for="colFormLabelSm" class="col-lg-2 col-sm-4 col-form-label">Alternate Mobile:</label>
+            <label for="colFormLabelSm" class="col-lg-2 col-sm-4 col-form-label">Alternate Mobile</label>
             <div class="col-lg-4 col-md-6 col-sm-10">
               <div class="input-group mb-3">
                 <div class="input-group-prepend">
@@ -129,7 +129,7 @@
                   placeholder="Alternate Mobile" />
               </div>
             </div>
-            <label for="colFormLabelSm" class="col-lg-2 col-sm-4 col-form-label">Mobile IMEI:</label>
+            <label for="colFormLabelSm" class="col-lg-2 col-sm-4 col-form-label">Mobile IMEI</label>
             <div class="col-lg-4 col-md-6 col-sm-10">
               <div class="input-group mb-3">
                 <div class="input-group-prepend">
@@ -145,7 +145,7 @@
             </div>
           </div>
           <div class="form-group row">
-            <label for="colFormLabelSm" class="col-sm-4 col-form-label">Address Line 1:</label>
+            <label for="colFormLabelSm" class="col-sm-4 col-form-label">Address Line 1</label>
             <div class="col-md-7 col-sm-10">
               <div class="input-group mb-3">
                 <div class="input-group-prepend">
@@ -161,7 +161,7 @@
             </div>
           </div>
           <div class="form-group row">
-            <label for="colFormLabelSm" class="col-sm-4 col-form-label">Address Line 2:</label>
+            <label for="colFormLabelSm" class="col-sm-4 col-form-label">Address Line 2</label>
             <div class="col-md-7 col-sm-10">
               <div class="input-group mb-3">
                 <div class="input-group-prepend">
@@ -177,7 +177,7 @@
             </div>
           </div>
           <div class="form-group row">
-            <label for="colFormLabelSm" class="col-lg-2 col-sm-4 col-form-label">City:</label>
+            <label for="colFormLabelSm" class="col-lg-2 col-sm-4 col-form-label">City</label>
             <div class="col-md-4 col-sm-10">
               <div class="input-group mb-3">
                 <div class="input-group-prepend">
@@ -190,7 +190,7 @@
                 <input type="text" class="form-control" formControlName="city" id="colFormLabelSm" placeholder="City" />
               </div>
             </div>
-            <label for="colFormLabelSm" class="col-lg-2 col-sm-4 col-form-label">State:</label>
+            <label for="colFormLabelSm" class="col-lg-2 col-sm-4 col-form-label">State</label>
             <div class="col-md-4 col-sm-10">
               <div class="input-group mb-3">
                 <div class="input-group-prepend">
@@ -206,7 +206,7 @@
             </div>
           </div>
           <div class="form-group row">
-            <label for="colFormLabelSm" class="col-lg-2 col-sm-4 col-form-label">Country:</label>
+            <label for="colFormLabelSm" class="col-lg-2 col-sm-4 col-form-label">Country</label>
             <div class="col-md-4 col-sm-10">
               <div class="input-group mb-3">
                 <div class="input-group-prepend">
@@ -220,7 +220,7 @@
                   placeholder="Country" />
               </div>
             </div>
-            <label for="colFormLabelSm" class="col-lg-2 col-sm-4 col-form-label">Zip Code:</label>
+            <label for="colFormLabelSm" class="col-lg-2 col-sm-4 col-form-label">Zip Code</label>
             <div class="col-md-4 col-sm-10">
               <div class="input-group mb-3">
                 <div class="input-group-prepend">
@@ -236,7 +236,7 @@
             </div>
           </div>
           <div class="form-group row">
-            <label for="colFormLabelSm" class="col-lg-2 col-sm-4 col-form-label">Joining Place:</label>
+            <label for="colFormLabelSm" class="col-lg-2 col-sm-4 col-form-label">Joining Place</label>
             <div class="col-lg-4 col-md-6 col-sm-10">
               <div class="input-group mb-3">
                 <div class="input-group-prepend">
@@ -250,7 +250,7 @@
                   placeholder="Joining Place" />
               </div>
             </div>
-            <label for="colFormLabelSm" class="col-lg-2 col-sm-4 col-form-label">Joining Date:</label>
+            <label for="colFormLabelSm" class="col-lg-2 col-sm-4 col-form-label">Joining Date</label>
             <div class="col-lg-4 col-md-6 col-sm-10">
               <div class="input-group mb-3">
                 <div class="input-group-prepend">
@@ -270,7 +270,7 @@
             </div>
           </div>
           <div class="form-group row">
-            <label for="colFormLabelSm" class="col-lg-2 col-sm-4 col-form-label">Date of Birth:</label>
+            <label for="colFormLabelSm" class="col-lg-2 col-sm-4 col-form-label">Date of Birth</label>
             <div class="col-lg-4 col-md-6 col-sm-10">
               <div class="input-group mb-3">
                 <div class="input-group-prepend">
@@ -288,7 +288,7 @@
                   placeholder="Date of Birth" />
               </div>
             </div>
-            <label for="colFormLabelSm" class="col-lg-2 col-sm-4 col-form-label">Qualification:</label>
+            <label for="colFormLabelSm" class="col-lg-2 col-sm-4 col-form-label">Qualification</label>
             <div class="col-lg-4 col-md-6 col-sm-10">
               <div class="input-group mb-3">
                 <div class="input-group-prepend">
@@ -303,7 +303,7 @@
             </div>
           </div>
           <div class="form-group row">
-            <label for="colFormLabelSm" class="col-lg-2 col-sm-4 col-form-label">Salary:</label>
+            <label for="colFormLabelSm" class="col-lg-2 col-sm-4 col-form-label">Salary</label>
             <div class="col-lg-4 col-md-6 col-sm-10">
               <div class="input-group mb-3">
                 <div class="input-group-prepend">
@@ -320,7 +320,7 @@
                   placeholder="Salary" />
               </div>
             </div>
-            <label for="colFormLabelSm" class="col-lg-2 col-sm-4 col-form-label">Batta:</label>
+            <label for="colFormLabelSm" class="col-lg-2 col-sm-4 col-form-label">Batta</label>
             <div class="col-lg-4 col-md-6 col-sm-10">
               <div class="input-group mb-3">
                 <div class="input-group-prepend">
@@ -339,7 +339,7 @@
             </div>
           </div>
           <div class="form-group row">
-            <label for="colFormLabelSm" class="col-lg-2 col-sm-4 col-form-label">Salary Effective Date:</label>
+            <label for="colFormLabelSm" class="col-lg-2 col-sm-4 col-form-label">Salary Effective Date</label>
             <div class="col-lg-4 col-md-6 col-sm-10">
               <div class="input-group mb-3">
                 <div class="input-group-prepend">
@@ -357,7 +357,7 @@
                   placeholder="Salary Effective Date" />
               </div>
             </div>
-            <label for="colFormLabelSm" class="col-lg-2 col-sm-4 col-form-label">Salary Old:</label>
+            <label for="colFormLabelSm" class="col-lg-2 col-sm-4 col-form-label">Salary Old</label>
             <div class="col-lg-4 col-md-6 col-sm-10">
               <div class="input-group mb-3">
                 <div class="input-group-prepend">
@@ -377,7 +377,7 @@
           </div>
 
           <div class="form-group row">
-            <label for="colFormLabelSm" class="col-lg-2 col-sm-4 col-form-label">Batta Old:</label>
+            <label for="colFormLabelSm" class="col-lg-2 col-sm-4 col-form-label">Batta Old</label>
             <div class="col-lg-4 col-md-6 col-sm-10">
               <div class="input-group mb-3">
                 <div class="input-group-prepend">
@@ -394,7 +394,7 @@
                   placeholder="Batta Old" />
               </div>
             </div>
-            <label for="colFormLabelSm" class="col-lg-2 col-sm-4 col-form-label">Login Allowed:</label>
+            <label for="colFormLabelSm" class="col-lg-2 col-sm-4 col-form-label">Login Allowed<sup>*</sup></label>
             <div class="col-lg-4 col-md-6 col-sm-10">
               <div class="input-group mb-3">
                 <div class="form-check">
@@ -407,7 +407,7 @@
             </div>
           </div>
           <div class="form-group row">
-            <label for="colFormLabelSm" class="col-lg-2 col-sm-4 col-form-label">Reference Person:</label>
+            <label for="colFormLabelSm" class="col-lg-2 col-sm-4 col-form-label">Reference Person</label>
             <div class="col-lg-4 col-md-6 col-sm-10">
               <div class="input-group mb-3">
                 <div class="input-group-prepend">
@@ -420,7 +420,7 @@
                   placeholder="Reference Person" />
               </div>
             </div>
-            <label for="colFormLabelSm" class="col-lg-2 col-sm-4 col-form-label">Reference Person Phone:</label>
+            <label for="colFormLabelSm" class="col-lg-2 col-sm-4 col-form-label">Reference Person Phone</label>
             <div class="col-lg-4 col-md-6 col-sm-10">
               <div class="input-group mb-3">
                 <div class="input-group-prepend">
@@ -436,7 +436,7 @@
             </div>
           </div>
           <div class="form-group row">
-            <label for="colFormLabelSm" class="col-sm-4 col-form-label">Reference Person Address:</label>
+            <label for="colFormLabelSm" class="col-sm-4 col-form-label">Reference Person Address</label>
             <div class="col-md-7 col-sm-10">
               <div class="input-group mb-3">
                 <div class="input-group-prepend">
@@ -453,7 +453,7 @@
           </div>
           <div class="form-group row"></div>
           <div class="form-group row">
-            <label for="colFormLabelSm" class="col-lg-2 col-sm-4 col-form-label">Bank Account Number:</label>
+            <label for="colFormLabelSm" class="col-lg-2 col-sm-4 col-form-label">Bank Account Number</label>
             <div class="col-lg-4 col-md-6 col-sm-10">
               <div class="input-group mb-3">
                 <div class="input-group-prepend">
@@ -469,7 +469,7 @@
                   placeholder="Bank Account Number" />
               </div>
             </div>
-            <label for="colFormLabelSm" class="col-lg-2 col-sm-4 col-form-label">Bank Name:</label>
+            <label for="colFormLabelSm" class="col-lg-2 col-sm-4 col-form-label">Bank Name</label>
             <div class="col-lg-4 col-md-6 col-sm-10">
               <div class="input-group mb-3">
                 <div class="input-group-prepend">
@@ -487,7 +487,7 @@
             </div>
           </div>
           <div class="form-group row">
-            <label for="colFormLabelSm" class="col-lg-2 col-sm-4 col-form-label">Bank Branch Name:</label>
+            <label for="colFormLabelSm" class="col-lg-2 col-sm-4 col-form-label">Bank Branch Name</label>
             <div class="col-lg-4 col-md-6 col-sm-10">
               <div class="input-group mb-3">
                 <div class="input-group-prepend">
@@ -503,7 +503,7 @@
                   placeholder="Bank Branch Name" />
               </div>
             </div>
-            <label for="colFormLabelSm" class="col-lg-2 col-sm-4 col-form-label">Bank Branch City:</label>
+            <label for="colFormLabelSm" class="col-lg-2 col-sm-4 col-form-label">Bank Branch City</label>
             <div class="col-lg-4 col-md-6 col-sm-10">
               <div class="input-group mb-3">
                 <div class="input-group-prepend">
@@ -521,7 +521,7 @@
             </div>
           </div>
           <div class="form-group row">
-            <label for="colFormLabelSm" class="col-lg-2 col-sm-4 col-form-label">Bank IFSC Code:</label>
+            <label for="colFormLabelSm" class="col-lg-2 col-sm-4 col-form-label">Bank IFSC Code</label>
             <div class="col-lg-4 col-md-6 col-sm-10">
               <div class="input-group mb-3">
                 <div class="input-group-prepend">
@@ -537,7 +537,7 @@
                   placeholder="Bank IFSC Code" />
               </div>
             </div>
-            <label for="colFormLabelSm" class="col-lg-2 col-sm-4 col-form-label">Bank Account Holder Name:</label>
+            <label for="colFormLabelSm" class="col-lg-2 col-sm-4 col-form-label">Bank Account Holder Name</label>
             <div class="col-lg-4 col-md-6 col-sm-10">
               <div class="input-group mb-3">
                 <div class="input-group-prepend">
@@ -555,7 +555,7 @@
             </div>
           </div>
           <div class="form-group row">
-            <label for="colFormLabelSm" class="col-lg-2 col-sm-4 col-form-label">Designation:</label>
+            <label for="colFormLabelSm" class="col-lg-2 col-sm-4 col-form-label">Designation<sup>*</sup></label>
             <div class="col-lg-4 col-md-6 col-sm-10">
               <div class="input-group mb-3">
                 <div class="input-group-prepend">
@@ -571,7 +571,7 @@
                 </select>
               </div>
             </div>
-            <label for="colFormLabelSm" class="col-lg-2 col-sm-4 col-form-label">IMEI Allowed:</label>
+            <label for="colFormLabelSm" class="col-lg-2 col-sm-4 col-form-label">IMEI Allowed<sup>*</sup></label>
             <div class="col-lg-4 col-md-6 col-sm-10">
               <div class="input-group mb-3">
                 <div class="form-check">
@@ -585,7 +585,7 @@
           </div>
 
           <div class="form-group row">
-            <label for="colFormLabelSm" class="col-lg-2 col-sm-4 col-form-label">Roles Allowed:</label>
+            <label for="colFormLabelSm" class="col-lg-2 col-sm-4 col-form-label">Roles Allowed</label>
             <div class="col-lg-4 col-md-6 col-sm-10">
               <div class="input-group mb-3">
               <ng-multiselect-dropdown
@@ -598,7 +598,7 @@
             </div>
             </div>
 
-            <label for="colFormLabelSm" class="col-lg-2 col-sm-4 col-form-label">Modules Allowed:</label>
+            <label for="colFormLabelSm" class="col-lg-2 col-sm-4 col-form-label">Modules Allowed</label>
             <div class="col-lg-4 col-md-6 col-sm-10">
               <div class="input-group mb-3">
                 <ng-multiselect-dropdown
