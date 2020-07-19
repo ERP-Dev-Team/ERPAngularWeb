@@ -53,8 +53,11 @@ export class CavedComponent implements OnInit {
   public selectedRolesList : any[];
   public dropdownRolesList : any[];
   public dropdownRolesSettings: IDropdownSettings;
+  public editdropdownRolesSettings: IDropdownSettings;
+  public approvedropdownRolesSettings: IDropdownSettings;
+  public deletedropdownRolesSettings: IDropdownSettings;
   private responseGetter: any;
- private roleresponseGetter: any;
+  private roleresponseGetter: any;
   constructor(
     private apollo: Apollo,
     private route: ActivatedRoute,
@@ -73,7 +76,7 @@ export class CavedComponent implements OnInit {
       .subscribe((result) => {
         //console.log(JSON.stringify(result));
         this.roleresponseGetter = result.data;
-        this.dropdownRolesList = this.responseGetter.roles;
+        this.dropdownRolesList = this.roleresponseGetter.roles;
       });
   }
 
@@ -98,6 +101,32 @@ export class CavedComponent implements OnInit {
       searchPlaceholderText: 'Search roles',
       allowSearchFilter: true
     };
+    this.deletedropdownRolesSettings = {
+      singleSelection: false,
+      idField: '_id',
+      textField: 'name',
+      enableCheckAll: false,
+      searchPlaceholderText: 'Search roles',
+      allowSearchFilter: true
+    };
+    this.editdropdownRolesSettings = {
+      singleSelection: false,
+      idField: '_id',
+      textField: 'name',
+      enableCheckAll: false,
+      searchPlaceholderText: 'Search roles',
+      allowSearchFilter: true
+    };
+    this.approvedropdownRolesSettings = {
+      singleSelection: false,
+      idField: '_id',
+      textField: 'name',
+      enableCheckAll: false,
+      searchPlaceholderText: 'Search roles',
+      allowSearchFilter: true
+    };
+
+  
 
   }
 
