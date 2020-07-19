@@ -1,0 +1,83 @@
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="h3 mb-0 text-gray-800">Caved</h1>
+    <!-- <button class="btn-primary" (click)="navigateToUser()"> Edit User</button> -->
+  </div>
+  <!-- 
+    <div class="row">
+      <div class="col-xl-3 col-md-6 mb-4">
+        <div class="card border-left-primary shadow h-100 py-2">
+          <div class="card-body">
+            <div class="row no-gutters align-items-center">
+              <div class="col mr-2">
+                <div
+                  class="text-xs font-weight-bold text-primary text-uppercase mb-1"
+                >
+                  Total Users
+                </div>
+                <div class="h5 mb-0 font-weight-bold text-gray-800">1</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  
+      <div class="col-xl-3 col-md-6 mb-4">
+        <div class="card border-left-primary shadow h-100 py-2">
+          <div class="card-body">
+            <div class="row no-gutters align-items-center">
+              <div class="col mr-2">
+                <div
+                  class="text-xs font-weight-bold text-primary text-uppercase mb-1"
+                >
+                  Online Users
+                </div>
+                <div class="h5 mb-0 font-weight-bold text-gray-800">1</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div> -->
+  
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th class="text-dark" scope="col-2">#</th>
+          <th class="text-dark" scope="col-2">Module Name</th>
+          <th  class="text-dark" scope="col-2">Create</th>
+          <th  class="text-dark" scope="col-2">Approve</th>
+          <th  class="text-dark" scope="col-2">Delete</th>
+          <th class="text-dark" scope="col-2">Edit</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let module of modulesList">
+          <th scope="row">{{modulesList.indexOf(module) + 1}}</th>
+          <td class="text-primary">{{module.name}}</td>
+          <td> <ng-multiselect-dropdown
+            [placeholder]="'Select roles'"
+            [data]="dropdownRolesList"
+            [settings]="dropdownRolesSettings"
+          >
+          </ng-multiselect-dropdown></td>
+          <td> <ng-multiselect-dropdown
+            [placeholder]="'Select roles'"
+            [data]="dropdownRolesList"
+            [settings]="dropdownRolesSettings"
+          >
+          </ng-multiselect-dropdown></td>
+          <td> <ng-multiselect-dropdown
+            [placeholder]="'Select roles'"
+            [data]="dropdownRolesList"
+            [settings]="dropdownRolesSettings"
+          >
+          </ng-multiselect-dropdown></td>
+          <td> <ng-multiselect-dropdown
+            [placeholder]="'Select roles'"
+            [data]="dropdownRolesList"
+            [settings]="dropdownRolesSettings"
+          >
+          </ng-multiselect-dropdown></td>
+        </tr>
+      </tbody>
+    </table>
