@@ -27,6 +27,7 @@ import { ViewUserComponent } from '../../views/users/view-user/view-user.compone
 import { EditUserComponent } from '../../views/users/edit-user/edit-user.component';
 import { AddUserComponent } from '../../views/users/add-user/add-user.component';
 import { CavedComponent } from '../../views/caved/caved.component';
+import { EditCavedComponent } from '../../views/caved/edit-caved/edit-caved.component';
 
 const routes: Routes = [{ path: 'viewItemCategory', component: ViewItemCategoryComponent  },
 { path: 'addProject', component: AddProjectComponent },
@@ -50,7 +51,8 @@ const routes: Routes = [{ path: 'viewItemCategory', component: ViewItemCategoryC
   {path: 'viewUser', component: ViewUserComponent},
   {path: 'editUser', component: EditUserComponent},
   {path: 'addUser', component: AddUserComponent},
-  {path:'viewCaved', component: CavedComponent}
+  {path:'viewCaved', component: CavedComponent},
+  {path:'editCaved', component: EditCavedComponent}
    
 ];
 
