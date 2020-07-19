@@ -31,6 +31,7 @@ import { AddUserComponent } from '../../views/users/add-user/add-user.component'
 import { ComponentLabelComponent } from '../../components/component-label/component-label.component';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { CavedComponent } from '../../views/caved/caved.component';
+import { EditCavedComponent } from '../../views/caved/edit-caved/edit-caved.component';
 
 
 @NgModule({
@@ -57,6 +58,7 @@ import { CavedComponent } from '../../views/caved/caved.component';
     AddProjectComponent, ViewUserComponent, EditUserComponent, AddUserComponent,
     ComponentLabelComponent,
     CavedComponent,
+    EditCavedComponent,
   
   ],
   imports: [

@@ -37,12 +37,6 @@ query{
 
 `;
 
-const ROLESQUERY = gql`
-query{
-  roles{_id,name,createdAt,updatedAt}
-}
-`;
-
 @Component({
   selector: 'app-caved',
   templateUrl: './caved.component.html',
@@ -50,14 +44,7 @@ query{
 })
 export class CavedComponent implements OnInit {
   public modulesList;
-  public selectedRolesList : any[];
-  public dropdownRolesList : any[];
-  public dropdownRolesSettings: IDropdownSettings;
-  public editdropdownRolesSettings: IDropdownSettings;
-  public approvedropdownRolesSettings: IDropdownSettings;
-  public deletedropdownRolesSettings: IDropdownSettings;
   private responseGetter: any;
-  private roleresponseGetter: any;
   constructor(
     private apollo: Apollo,
     private route: ActivatedRoute,
@@ -65,25 +52,13 @@ export class CavedComponent implements OnInit {
   ) { 
        
     this. getAvailableModules();
-    this.getAvailableRoles();
-  }
-
-  private getAvailableRoles() {
-    this.apollo
-      .query({
-        query: ROLESQUERY,
-      })
-      .subscribe((result) => {
-        //console.log(JSON.stringify(result));
-        this.roleresponseGetter = result.data;
-        this.dropdownRolesList = this.roleresponseGetter.roles;
-      });
   }
 
   private getAvailableModules() {
     this.apollo
       .query({
         query: MODULE_QUERY,
+        fetchPolicy: 'network-only',
       })
       .subscribe((result) => {
         //console.log(JSON.stringify(result));
@@ -91,41 +66,12 @@ export class CavedComponent implements OnInit {
         this.modulesList = this.responseGetter.modules;
       });
   }
+  public navigateToEditCaved(module : any){
+    console.log(module)
+    this.router.navigate(['/editCaved'], {queryParams : {mID : module._id}, skipLocationChange: true})
+  }
 
   ngOnInit(): void {
-    this.dropdownRolesSettings = {
-      singleSelection: false,
-      idField: '_id',
-      textField: 'name',
-      enableCheckAll: false,
-      searchPlaceholderText: 'Search roles',
-      allowSearchFilter: true
-    };
-    this.deletedropdownRolesSettings = {
-      singleSelection: false,
-      idField: '_id',
-      textField: 'name',
-      enableCheckAll: false,
-      searchPlaceholderText: 'Search roles',
-      allowSearchFilter: true
-    };
-    this.editdropdownRolesSettings = {
-      singleSelection: false,
-      idField: '_id',
-      textField: 'name',
-      enableCheckAll: false,
-      searchPlaceholderText: 'Search roles',
-      allowSearchFilter: true
-    };
-    this.approvedropdownRolesSettings = {
-      singleSelection: false,
-      idField: '_id',
-      textField: 'name',
-      enableCheckAll: false,
-      searchPlaceholderText: 'Search roles',
-      allowSearchFilter: true
-    };
-
   
 
   }
