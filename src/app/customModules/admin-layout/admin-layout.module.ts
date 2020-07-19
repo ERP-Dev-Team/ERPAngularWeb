@@ -30,6 +30,7 @@ import { EditUserComponent } from '../../views/users/edit-user/edit-user.compone
 import { AddUserComponent } from '../../views/users/add-user/add-user.component';
 import { ComponentLabelComponent } from '../../components/component-label/component-label.component';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
+import { CavedComponent } from '../../views/caved/caved.component';
 
 
 @NgModule({
@@ -55,6 +56,7 @@ import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
     EditItemCategoryComponent, 
     AddProjectComponent, ViewUserComponent, EditUserComponent, AddUserComponent,
     ComponentLabelComponent,
+    CavedComponent,
   
   ],
   imports: [
