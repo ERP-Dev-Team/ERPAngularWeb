@@ -68,7 +68,7 @@ export class CavedComponent implements OnInit {
   }
   public navigateToEditCaved(module : any){
     console.log(module)
-    this.router.navigate(['/editCaved'], {queryParams : {mID : module._id}, skipLocationChange: true})
+    this.router.navigate(['/editCaved'], {queryParams : {mID : module._id,cID:module.caved._id}, skipLocationChange: true})
   }
 
   ngOnInit(): void {

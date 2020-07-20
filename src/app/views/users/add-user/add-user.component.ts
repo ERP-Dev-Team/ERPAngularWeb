@@ -66,6 +66,12 @@ mutation createUserFunction($userValue: UserInput!){
 
 `;
 
+const CAMPSQUERY = gql`
+query{
+  camps{_id,name,status,project{name,status,startDate,endDate,createdAt,updatedAt},startDate,endDate,createdAt,updatedAt}
+}
+`
+
 @Component({
   selector: 'app-add-user',
   templateUrl: './add-user.component.html',
@@ -74,13 +80,14 @@ mutation createUserFunction($userValue: UserInput!){
 export class AddUserComponent implements OnInit {
   public designationsList: any[];
   private responseGetter: any;
-  private selectedDesignationId: any;
-  public selectedRolesList : any[];
-  public dropdownRolesList : any[];
+  public selectedRolesList: any[];
+  public dropdownRolesList: any[];
   public dropdownRolesSettings: IDropdownSettings;
-  public selectedModulesList : any[];
-  public dropdownModulesList : any[];
+  public selectedModulesList: any[];
+  public dropdownModulesList: any[];
   public dropdownModulesSettings: IDropdownSettings;
+  public dropdownCampsSettings: IDropdownSettings;
+  public dropdownCampsList: any[];
 
   public userForm = new FormGroup({
     userName: new FormControl('', Validators.required),
@@ -120,9 +127,9 @@ export class AddUserComponent implements OnInit {
     bankIIFSCCode: new FormControl('', Validators.required),
     bankAccountHolderName: new FormControl('', Validators.required),
     designation: new FormControl('', Validators.required),
-    modulesAllowed: new FormControl('',Validators.required),
-    rolesAllowed: new FormControl('',Validators.required),
-
+    modulesAllowed: new FormControl('', Validators.required),
+    rolesAllowed: new FormControl('', Validators.required),
+    campsAllowed: new FormControl('', Validators.required),
   });
 
   constructor(
@@ -154,6 +161,18 @@ export class AddUserComponent implements OnInit {
       });
   }
 
+  private getAvailableCamps() {
+    this.apollo
+      .query({
+        query: CAMPSQUERY,
+      })
+      .subscribe((result) => {
+        //console.log(JSON.stringify(result));
+        this.responseGetter = result.data;
+        this.dropdownCampsList = this.responseGetter.camps;
+      });
+  }
+
   private getAvailableRoles() {
     this.apollo
       .query({
@@ -173,21 +192,21 @@ export class AddUserComponent implements OnInit {
   }
 
   public addUser() {
-    var roleListObjects = this.userForm.controls['rolesAllowed'].value ;
-    var roleListObjectsParsedIds = [];
-    roleListObjects.forEach((element)=>{
-      roleListObjectsParsedIds.push(element._id);
-    });
-    this.userForm.controls['rolesAllowed'].setValue(roleListObjectsParsedIds);
-    
-    var moduleListObjects = this.userForm.controls['modulesAllowed'].value ;
-    var moduleListObjectsParsedIds = [];
-    moduleListObjects.forEach((element)=>{
-      moduleListObjectsParsedIds.push(element._id);
-    });
-    this.userForm.controls['modulesAllowed'].setValue(moduleListObjectsParsedIds);
+    this.mapListForIdElement('rolesAllowed');
+    this.mapListForIdElement('modulesAllowed');
+    this.mapListForIdElement('campsAllowed');
+
     console.log(this.userForm.value);
     this.createUser()
+  }
+
+  private mapListForIdElement(ngModelName: string) {
+    var createRoleListObjects = this.userForm.controls[ngModelName].value;
+    var createRoleListObjectsParsedIds = [];
+    createRoleListObjects.forEach((element) => {
+      createRoleListObjectsParsedIds.push(element._id);
+    });
+    this.userForm.controls[ngModelName].setValue(createRoleListObjectsParsedIds);
   }
 
   private createUser() {
@@ -202,6 +221,7 @@ export class AddUserComponent implements OnInit {
     },
       (error) => {
         console.log("There is an error sending the query" + JSON.stringify(error))
+        this.router.navigateByUrl('/viewUser')
       }
     )
   }
@@ -223,9 +243,18 @@ export class AddUserComponent implements OnInit {
       searchPlaceholderText: 'Search modules',
       allowSearchFilter: true
     };
+    this.dropdownCampsSettings = {
+      singleSelection: false,
+      idField: '_id',
+      textField: 'name',
+      enableCheckAll: false,
+      searchPlaceholderText: 'Search camps',
+      allowSearchFilter: true
+    };
 
     this.getAvailableDesignations();
     this.getAvailableModules();
     this.getAvailableRoles();
+    this.getAvailableCamps();
   }
 }

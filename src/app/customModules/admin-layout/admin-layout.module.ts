@@ -58,8 +58,7 @@ import { EditCavedComponent } from '../../views/caved/edit-caved/edit-caved.comp
     AddProjectComponent, ViewUserComponent, EditUserComponent, AddUserComponent,
     ComponentLabelComponent,
     CavedComponent,
-    EditCavedComponent,
-  
+    EditCavedComponent
   ],
   imports: [
     CommonModule,

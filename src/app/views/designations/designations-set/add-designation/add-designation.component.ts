@@ -46,7 +46,7 @@ export class AddDesignationComponent implements OnInit {
           console.log('Success');
         },
         (error) => {
-          console.log('there was an error sending the query', error);
+          console.log(JSON.stringify(error));
         }
       );
   }

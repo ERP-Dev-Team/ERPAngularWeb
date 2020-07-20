@@ -54,12 +54,10 @@ const USERSQUERY = gql`
       _id,
       name,
     },
-    campAllowed{
+    campsAllowed{
       _id,
       name
     },
-    createdAt,
-    updatedAt
   }
 }
 
@@ -79,9 +77,7 @@ export class ViewUserComponent implements OnInit {
      this.getAllUsers()
   }
 
-  public navigateToUser(){
-    this.router.navigateByUrl('/editUser')
-  }
+
   public  navigatetoAddUser(){
     this.router.navigateByUrl('/addUser')
   }
@@ -96,6 +92,11 @@ export class ViewUserComponent implements OnInit {
     })
   }
  
+
+  public navigateToEditUser(user : any){
+    console.log(user)
+    this.router.navigate(['/editUser'], {queryParams : {userId : user._id}, skipLocationChange: true})
+  }
 
 
   ngOnInit(): void {
