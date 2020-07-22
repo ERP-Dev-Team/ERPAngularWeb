@@ -16,7 +16,6 @@ export class EditCampComponent implements OnInit {
   responseForm: any;
   projectList: any;
   private campId: any;
-  private projectId: String;
   responseGetter: any;
   statusList = ['Active', 'Inactive'];
   campForm = new FormGroup({
@@ -86,7 +85,7 @@ export class EditCampComponent implements OnInit {
         mutation: EDIT_CAMP,
         variables: {
           campName: this.campForm.controls['name'].value,
-          project: this.projectId,
+          project: this.campForm.controls['project'].value,
           status: this.campForm.controls['status'].value,
           startDate: startDateStr,
           endDate: endDateStr,
@@ -98,6 +97,7 @@ export class EditCampComponent implements OnInit {
         (result) => {
           this.router.navigate(['/viewCamp']);
           console.log('Success');
+          console.log(result)
         },
         (error) => {
           console.log(JSON.stringify(error));
@@ -169,7 +169,6 @@ export class EditCampComponent implements OnInit {
       })
       .subscribe((result) => {
         this.responseGetter = result.data;
-        this.projectId = this.responseGetter.camp.project._id;
         var startdate = datehandler.convertTimeStampToDate(
           this.responseGetter.camp.startDate
         );
@@ -181,17 +180,13 @@ export class EditCampComponent implements OnInit {
           name: this.responseGetter.camp.name,
           status: this.responseGetter.camp.status,
           address: this.responseGetter.camp.address,
-          project: this.responseGetter.camp.project.name,
+          project: this.responseGetter.camp.project._id,
           startDate: startdate,
           endDate: enddate,
         });
       });
   }
 
-  public onProjectChange(project: any) {
-    this.projectId = project._id;
-  
-  }
 
   ngOnInit(): void {
     this.getCampDetailsForEdit();
