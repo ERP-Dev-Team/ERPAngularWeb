@@ -15,117 +15,138 @@ const DESIGNATIONSQUERY = gql`
 `;
 
 const CAMPSQUERY = gql`
-query{
-  camps{_id,name,status,project{name,status,startDate,endDate,createdAt,updatedAt},startDate,endDate,createdAt,updatedAt}
-}
-`
+  query {
+    camps {
+      _id
+      name
+      status
+      project {
+        name
+        status
+        startDate
+        endDate
+        createdAt
+        updatedAt
+      }
+      startDate
+      endDate
+      createdAt
+      updatedAt
+    }
+  }
+`;
 
 const ROLESQUERY = gql`
-query{
-  roles{_id,name,createdAt,updatedAt}
-}
+  query {
+    roles {
+      _id
+      name
+      createdAt
+      updatedAt
+    }
+  }
 `;
 
 const MODULESQUERY = gql`
-{
-  modules {
-    _id
-    name
-    caved {
-      _id,
-      create {
+  {
+    modules {
+      _id
+      name
+      caved {
         _id
-        name
-      }
-      approval {
-        _id
-        name
-      }
-      view {
-        _id
-        name
-      }
-      edit {
-        _id
-        name
-      }
-      delete {
-        _id
-        name
+        create {
+          _id
+          name
+        }
+        approval {
+          _id
+          name
+        }
+        view {
+          _id
+          name
+        }
+        edit {
+          _id
+          name
+        }
+        delete {
+          _id
+          name
+        }
       }
     }
   }
-}
 `;
 
 const USER_QUERY = gql`
-query getUserById($userId: ID!){
-  user(_id:$userId){
-    userName,
-    password,
-    firstName,
-    lastName,
-    email,
-    phone1,
-    phone2,
-    phoneIMEI,
-    address1,
-    address2,
-    city,
-    state,
-    country,
-    zipcode,
-    joiningPlace,
-    joiningDate,
-    dateOfBirth,
-    qualification,
-    salary,
-    batta,
-    salaryEffectiveDate,
-    salaryOld,
-    battaOld,
-    loginAllowed,
-    lastLogin,
-    lastLoginDevice,
-    refPerson,
-    refPersonPhone,
-    refPersonAddress,
-    IMEIAllowed,
-    bankAccountNumber,
-    bankName,
-    bankBranchName,
-    bankBranchCity,
-    bankIIFSCCode,
-    bankAccountHolderName,
-    designation{
-      _id,
-      name
-    },
-    rolesAllowed{
-      _id,
-      name
-    },
-    modulesAllowed{
-      _id,
-      name,
-    },
-    campsAllowed{
-      _id,
-      name
+  query getUserById($userId: ID!) {
+    user(_id: $userId) {
+      userName
+      password
+      firstName
+      lastName
+      email
+      phone1
+      phone2
+      phoneIMEI
+      address1
+      address2
+      city
+      state
+      country
+      zipcode
+      joiningPlace
+      joiningDate
+      dateOfBirth
+      qualification
+      salary
+      batta
+      salaryEffectiveDate
+      salaryOld
+      battaOld
+      loginAllowed
+      lastLogin
+      lastLoginDevice
+      refPerson
+      refPersonPhone
+      refPersonAddress
+      IMEIAllowed
+      bankAccountNumber
+      bankName
+      bankBranchName
+      bankBranchCity
+      bankIIFSCCode
+      bankAccountHolderName
+      designation {
+        _id
+        name
+      }
+      rolesAllowed {
+        _id
+        name
+      }
+      modulesAllowed {
+        _id
+        name
+      }
+      campsAllowed {
+        _id
+        name
+      }
     }
   }
-}
 `;
 
 const UPDATE_USER = gql`
-mutation updateUserFunction($userValue: UserEditInput!){
-  updateUser(userEditInput:$userValue){
-    userName,
-    password,
-    firstName
+  mutation updateUserFunction($userId: ID!, $userValue: UserEditInput!) {
+    updateUser(_id: $userId, userEditInput: $userValue) {
+      userName
+      password
+      firstName
+    }
   }
-}
-`
+`;
 @Component({
   selector: 'app-edit-user',
   templateUrl: './edit-user.component.html',
@@ -145,7 +166,6 @@ export class EditUserComponent implements OnInit {
   public dropdownCampsList: any[];
   public userForm = new FormGroup({
     userName: new FormControl('', Validators.required),
-    password: new FormControl('', Validators.required),
     firstName: new FormControl('', Validators.required),
     lastName: new FormControl('', Validators.required),
     email: new FormControl('', Validators.required),
@@ -190,7 +210,7 @@ export class EditUserComponent implements OnInit {
     private apollo: Apollo,
     private route: ActivatedRoute,
     private router: Router
-  ) { }
+  ) {}
 
   private getAvailableDesignations() {
     this.apollo
@@ -253,34 +273,94 @@ export class EditUserComponent implements OnInit {
     createRoleListObjects.forEach((element) => {
       createRoleListObjectsParsedIds.push(element._id);
     });
-    this.userForm.controls[ngModelName].setValue(createRoleListObjectsParsedIds);
+    this.userForm.controls[ngModelName].setValue(
+      createRoleListObjectsParsedIds
+    );
   }
 
   private _editUser() {
     console.log(this.userForm.value);
-    this.apollo.mutate({
-      mutation: UPDATE_USER,
-      variables: { userValue: this.userForm.value }
-    }).subscribe((result) => {
-      console.log("UPDATED")
-    }, (error) => {
-      console.log(JSON.stringify(error));
-    });
+    this.apollo
+      .mutate({
+        mutation: UPDATE_USER,
+        variables: { userId: this.userId, userValue: this.userForm.value },
+      })
+      .subscribe(
+        (result) => {
+          console.log('UPDATED');
+          this.router.navigate(['/viewUser']);
+        },
+        (error) => {
+          console.log(JSON.stringify(error));
+        }
+      );
   }
 
   private getUser() {
-    this.route.queryParams.subscribe(params => {
+    this.route.queryParams.subscribe((params) => {
       this.userId = params['userId'];
-      this.apollo.query({
-        query: USER_QUERY,
-        variables: { userId: this.userId }
-      }).subscribe((result) => {
-        this.responseGetter = result.data;
-        console.log(this.responseGetter);
-        this.userForm.setValue(this.responseGetter.user);
-      }, (error) => {
-        console.log(JSON.stringify(error));
-      });
+      this.apollo
+        .query({
+          query: USER_QUERY,
+          variables: { userId: this.userId },
+        })
+        .subscribe(
+          (result) => {
+            this.responseGetter = result.data;
+            console.log(this.responseGetter);
+            this.MapUserRespone(this.responseGetter.user);
+          },
+          (error) => {
+            console.log(JSON.stringify(error));
+          }
+        );
+    });
+  }
+
+  private MapUserRespone(responseGetter: any) {
+    this.userForm.patchValue({
+      userName: responseGetter.userName,
+      firstName: responseGetter.firstName,
+      lastName: responseGetter.lastName,
+      email: responseGetter.email,
+      phone1: responseGetter.phone1,
+      phone2: responseGetter.phone2,
+      phoneIMEI: responseGetter.phoneIMEI,
+      address1: responseGetter.address1,
+      address2: responseGetter.address2,
+      city: responseGetter.city,
+      state: responseGetter.state,
+      country: responseGetter.country,
+      zipcode: responseGetter.zipcode,
+      joiningPlace: responseGetter.joiningPlace,
+      joiningDate: responseGetter.joiningDate,
+      dateOfBirth: responseGetter.dateOfBirth,
+      qualification: responseGetter.qualification,
+      salary: responseGetter.salary,
+      batta: responseGetter.batta,
+      salaryEffectiveDate: responseGetter.salaryEffectiveDate,
+      salaryOld: responseGetter.salaryOld,
+      battaOld: responseGetter.battaOld,
+      loginAllowed: responseGetter.loginAllowed,
+      lastLogin: responseGetter.lastLogin,
+      lastLoginDevice: responseGetter.lastLoginDevice,
+      refPerson: responseGetter.refPerson,
+      refPersonPhone: responseGetter.refPersonPhone,
+      refPersonAddress: responseGetter.refPersonAddress,
+      IMEIAllowed: responseGetter.IMEIAllowed,
+      bankAccountNumber: responseGetter.bankAccountNumber,
+      bankName: responseGetter.bankName,
+      bankBranchName: responseGetter.bankBranchName,
+      bankBranchCity: responseGetter.bankBranchCity,
+      bankIIFSCCode: responseGetter.bankIIFSCCode,
+      bankAccountHolderName: responseGetter.bankAccountHolderName,
+      designation:
+        responseGetter.designation != null
+          ? responseGetter.designation._id
+          : null,
+      rolesAllowed: responseGetter.rolesAllowed,
+      modulesAllowed: responseGetter.modulesAllowed,
+      campsAllowed: responseGetter.campsAllowed,
     });
   }
 
@@ -291,7 +371,7 @@ export class EditUserComponent implements OnInit {
       textField: 'name',
       enableCheckAll: false,
       searchPlaceholderText: 'Search roles',
-      allowSearchFilter: true
+      allowSearchFilter: true,
     };
     this.dropdownModulesSettings = {
       singleSelection: false,
@@ -299,7 +379,7 @@ export class EditUserComponent implements OnInit {
       textField: 'name',
       enableCheckAll: false,
       searchPlaceholderText: 'Search modules',
-      allowSearchFilter: true
+      allowSearchFilter: true,
     };
     this.dropdownCampsSettings = {
       singleSelection: false,
@@ -307,9 +387,8 @@ export class EditUserComponent implements OnInit {
       textField: 'name',
       enableCheckAll: false,
       searchPlaceholderText: 'Search camps',
-      allowSearchFilter: true
+      allowSearchFilter: true,
     };
-
     this.getAvailableDesignations();
     this.getAvailableModules();
     this.getAvailableRoles();

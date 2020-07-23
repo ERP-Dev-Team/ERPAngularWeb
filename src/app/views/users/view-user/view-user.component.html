@@ -61,7 +61,9 @@
         <td ><tr *ngFor="let roles of user.rolesAllowed">
             <td>{{roles.name}}</td>
         </tr></td>
-        <td></td>
+        <td><tr *ngFor="let camp of user.campsAllowed">
+          <td>{{camp.name}}</td>
+      </tr></td>
         <td><button type="submit" (click)="navigateToEditUser(user)" class="btn btn-primary" >Edit</button><td>
       </tr>
     </tbody>
