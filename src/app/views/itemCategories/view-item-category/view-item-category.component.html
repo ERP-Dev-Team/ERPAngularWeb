@@ -1,1 +1,33 @@
-<p>view-item-category works!</p>
+
+ <!-- Page Heading -->
+ <div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="h3 mb-0 text-gray-800">Item Categories</h1>
+    <button  (click)="navigativeToAddItemCategory()"   class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-plus fa-sm text-white-50"></i> Add Item Category</button>
+  
+  </div>
+  <table class="table table-hover">
+      <thead >
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col" class="text-dark">Item Category Name</th>
+          <th scope="col" class="text-dark">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor= "let itemCategory of itemCategoryList">
+          <th scope="row">{{itemCategoryList.indexOf(itemCategory) +1}}</th>
+          <td class="text-primary">{{itemCategory.name}}</td>
+          <td>
+  
+            <button   type="submit" (click)="onItemCategoryEdit(itemCategory)"  class="btn btn-info btn-circle">
+              <i class="fas fa-pen"></i>
+            </button>
+  
+            &nbsp;
+            <button   class="btn btn-danger btn-circle">
+              <i class="fas fa-trash"></i>
+            </button>
+          </td>
+      </tbody>
+    </table>
+  

@@ -1,1 +1,15 @@
-<p>add-item-category works!</p>
+
+ <!-- Page Heading -->
+ <div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="h3 mb-0 text-gray-800">Add Item Category</h1>
+   
+  </div>
+<form class="formContainer" [formGroup]="categoryForm" (ngSubmit)="onAddItemCategory()">
+    <div class="form-row row">
+        <div class="form-group col-md-4">
+      <label for="categoryName" class="lead" >Item Category Name</label>
+      <input type="text" class="form-control" id="Name"  formControlName="itemCategoryName" placeholder="   Name">
+    </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>

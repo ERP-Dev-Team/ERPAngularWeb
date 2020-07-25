@@ -29,6 +29,7 @@ import { AddUserComponent } from '../../views/users/add-user/add-user.component'
 import { CavedComponent } from '../../views/caved/caved.component';
 import { EditCavedComponent } from '../../views/caved/edit-caved/edit-caved.component';
 
+
 const routes: Routes = [{ path: 'viewItemCategory', component: ViewItemCategoryComponent  },
 { path: 'addProject', component: AddProjectComponent },
   { path: 'viewProject', component: ViewProjectComponent },
@@ -52,7 +53,10 @@ const routes: Routes = [{ path: 'viewItemCategory', component: ViewItemCategoryC
   {path: 'editUser', component: EditUserComponent},
   {path: 'addUser', component: AddUserComponent},
   {path:'viewCaved', component: CavedComponent},
-  {path:'editCaved', component: EditCavedComponent}
+  {path:'editCaved', component: EditCavedComponent},
+  {path:'viewItemCategory', component: ViewItemCategoryComponent },
+  {path: 'editItemCategory', component: EditItemCategoryComponent},
+  {path: 'addItemCategory', component: AddItemCategoryComponent}
    
 ];
 

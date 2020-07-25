@@ -13,6 +13,7 @@ export const LABELS:Lable[] = [
   { path: '/viewRole', name: ' Roles' ,addPath:'/addRole'},
   { path: '/viewDesignation', name: ' Designations',addPath:'/addDesignation' },
   { path: '/viewItem', name: ' Items',addPath:'/addItem' },
+  { path: '/viewItemCategory', name: 'Item Category',addPath:'/add' },
   { path: '/viewUnit', name: ' Units' ,addPath:'/addUnit'},
   { path: '/viewProject', name: ' Suppliers',addPath:'/add' },
   { path: '/viewUser',  name: 'Users',addPath:'/add' },
