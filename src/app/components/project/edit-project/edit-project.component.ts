@@ -4,6 +4,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { Apollo } from 'apollo-angular';
 import gql from 'graphql-tag';
 import { DateHandler } from '../../../handlerClass/date-handler';
+import { EditProjectService } from './../../../services/project/editProject/edit-project.service';
 
 var datehandler = new DateHandler();
 
@@ -26,7 +27,8 @@ export class EditProjectComponent implements OnInit {
   constructor(
     private apollo: Apollo,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private editProjectGQL: EditProjectService
   ) {
     this.route.queryParams.subscribe((params) => {
       this.projectId = params._id;
@@ -55,39 +57,13 @@ export class EditProjectComponent implements OnInit {
       this.projectForm.controls['endDate'].value
     );
 
-    var status = this.projectForm.controls['status'].value;
-    var EDIT_PROJECT = gql`
-      mutation editProjectFunction(
-        $status: String!
-        $projectId: ID!
-        $name: String!
-        $startDate: String!
-        $endDate: String!
-      ) {
-        updateProject(
-          _id: $projectId
-          status: $status
-          name: $name
-          startDate: $startDate
-          endDate: $endDate
-        ) {
-          name
-          status
-          startDate
-          endDate
-        }
-      }
-    `;
-    this.apollo
+    this.editProjectGQL
       .mutate({
-        mutation: EDIT_PROJECT,
-        variables: {
-          projectId: this.projectId,
-          status: status,
-          name: this.projectForm.controls['name'].value,
-          startDate: startDateStr,
-          endDate: endDateStr,
-        },
+        projectId: this.projectId,
+        status: this.projectForm.controls['status'].value,
+        name: this.projectForm.controls['name'].value,
+        startDate: startDateStr,
+        endDate: endDateStr,
       })
       .subscribe(
         (result) => {
