@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Apollo } from 'apollo-angular';
 import gql from 'graphql-tag';
 import { Router, ActivatedRoute } from '@angular/router';
+import { AllProjectsService } from '../../../services/project//allProject/all-projects.service';
 
 @Component({
   selector: 'app-view-project',
@@ -20,14 +21,10 @@ export class ViewProjectComponent implements OnInit {
   constructor(
     private apollo: Apollo,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private service: AllProjectsService
   ) {
-    this.openProjectsCount = 0;
-    this.closedProjectsCount = 0;
-    this.pausedProjectsCount = 0;
-    this.terminatedProjectsCount = 0;
-    this.setupProjectsDashboard();
-    this.setupProjectsTable();
+
   }
 
   public onProjectEdit(event: any) {
@@ -38,20 +35,7 @@ export class ViewProjectComponent implements OnInit {
   }
 
   private setupProjectsDashboard() {
-    this.apollo
-      .query({
-        query: gql`
-          {
-            projectDashboard {
-              openProjects
-              pausedProjects
-              closedProjects
-              terminatedProjects
-            }
-          }
-        `,
-      })
-      .subscribe((result) => {
+    this.service.projectDashboardDetails.subscribe((result)=>{
         this.dashboardGetter = result.data;
         this.openProjectsCount = this.dashboardGetter.projectDashboard.openProjects;
         this.pausedProjectsCount = this.dashboardGetter.projectDashboard.pausedProjects;
@@ -61,21 +45,8 @@ export class ViewProjectComponent implements OnInit {
   }
 
   private setupProjectsTable() {
-    this.apollo
-      .query({
-        query: gql`
-          {
-            projects {
-              _id
-              name
-              status
-              startDate
-              endDate
-              createdAt
-              updatedAt
-            }
-          }
-        `,
+    this.service
+      .fetch({
         fetchPolicy: 'network-only',
       })
       .subscribe((result) => {
@@ -96,5 +67,13 @@ export class ViewProjectComponent implements OnInit {
     }
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.openProjectsCount = 0;
+    this.closedProjectsCount = 0;
+    this.pausedProjectsCount = 0;
+    this.terminatedProjectsCount = 0;
+    this.setupProjectsDashboard();
+    this.setupProjectsTable();
+
+  }
 }
