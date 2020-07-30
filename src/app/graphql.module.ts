@@ -12,7 +12,7 @@ const defaultOptions: any = {
     errorPolicy: 'all',
   },
 }
-const uri = 'http://scpl.opcl.net:3000/api'; // <-- add the URL of the GraphQL server here
+const uri = 'http://chicago.opcl.net:3000/api'; // <-- add the URL of the GraphQL server here
 export function createApollo(httpLink: HttpLink) {
   return {
     link: httpLink.create({ uri }),
