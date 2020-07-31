@@ -3,7 +3,8 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: true
+  production: true,
+  apiEndPoint:"http://chicago.opcl.net:3000/api"
 };
 
 /*
