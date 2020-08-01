@@ -4,6 +4,10 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { Apollo } from 'apollo-angular';
 import gql from 'graphql-tag';
 import { DateHandler } from '../../../handlerClass/date-handler';
+import { AllProjectsService } from '../../../services/project//allProject/all-projects.service';
+import { EditCampsService } from '../../../services/camp/editCamp/edit-camps.service';
+
+
 
 var datehandler = new DateHandler();
 
@@ -30,13 +34,14 @@ export class EditCampComponent implements OnInit {
   constructor(
     private apollo: Apollo,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private allProjectsGQL: AllProjectsService,
+    private editCampGQL : EditCampsService
   ) {
     this.getProjectsList();
   }
 
   onSubmit() {
-    console.log(this.campForm.value);
 
     var startDateStr = datehandler.convertDatetoTimeStamp(
       this.campForm.controls['startDate'].value
@@ -45,45 +50,7 @@ export class EditCampComponent implements OnInit {
       this.campForm.controls['endDate'].value
     );
 
-    var EDIT_CAMP = gql`
-      mutation editCampFunction(
-        $campName: String!
-        $status: String!
-        $startDate: String!
-        $endDate: String!
-        $project: ID!
-        $campId: ID!
-        $address: String
-      ) {
-        updateCamp(
-          _id: $campId
-          name: $campName
-          status: $status
-          project: $project
-          startDate: $startDate
-          endDate: $endDate
-          address: $address
-        ) {
-          name
-          status
-          project {
-            name
-            status
-            startDate
-            endDate
-            createdAt
-            updatedAt
-          }
-          startDate
-          endDate
-        }
-      }
-    `;
-
-    this.apollo
-      .mutate({
-        mutation: EDIT_CAMP,
-        variables: {
+    this.editCampGQL.mutate({
           campName: this.campForm.controls['name'].value,
           project: this.campForm.controls['project'].value,
           status: this.campForm.controls['status'].value,
@@ -91,7 +58,6 @@ export class EditCampComponent implements OnInit {
           endDate: endDateStr,
           campId: this.campId,
           address: this.campForm.controls['address'].value,
-        },
       })
       .subscribe(
         (result) => {
@@ -107,23 +73,9 @@ export class EditCampComponent implements OnInit {
 
   /** Get Project List to display the available projects */
   private getProjectsList() {
-    this.apollo
-      .query({
-        query: gql`
-          {
-            projects {
-              _id
-              name
-              status
-              startDate
-              endDate
-              createdAt
-              updatedAt
-            }
-          }
-        `,
-      })
-      .subscribe((result) => {
+    this.allProjectsGQL.fetch({
+      fetchPolicy: 'network-only',
+    }).subscribe((result) => {
         this.responseGetter = result.data;
         this.projectList = this.responseGetter.projects;
       });

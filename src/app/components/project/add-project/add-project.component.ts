@@ -4,6 +4,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { Apollo } from 'apollo-angular';
 import gql from 'graphql-tag';
 import { DateHandler } from '../../../handlerClass/date-handler';
+import { AddProjectService } from '../../../services/project//addProject/add-project.service';
 
 var datehandler = new DateHandler();
 
@@ -24,7 +25,8 @@ export class AddProjectComponent implements OnInit {
   constructor(
     private apollo: Apollo,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private projectGQL: AddProjectService
   ) {}
 
   ngOnInit(): void {}
@@ -59,15 +61,11 @@ export class AddProjectComponent implements OnInit {
       }
     `;
 
-    this.apollo
-      .mutate({
-        mutation: CREATE_PROJECT,
-        variables: {
+    this.projectGQL.mutate({
           projectName: this.projectForm.controls['name'].value,
           status: this.projectForm.controls['status'].value,
           startDate: startDateStr,
           endDate: endDateStr,
-        },
       })
       .subscribe(
         (result) => {
