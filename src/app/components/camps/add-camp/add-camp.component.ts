@@ -4,6 +4,8 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { Apollo } from 'apollo-angular';
 import gql from 'graphql-tag';
 import { DateHandler } from '../../../handlerClass/date-handler';
+import { AllProjectsService } from '../../../services/project//allProject/all-projects.service';
+import { AddCampsService } from '../../../services/camp/addCamp/add-camps.service';
 
 var datehandler = new DateHandler();
 
@@ -28,23 +30,13 @@ export class AddCampComponent implements OnInit {
   constructor(
     private apollo: Apollo,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private allProjectsGQL: AllProjectsService,
+    private addCampGQL: AddCampsService
   ) {
-    this.apollo
-      .query({
-        query: gql`
-          {
-            projects {
-              _id
-              name
-              status
-              startDate
-              endDate
-              createdAt
-              updatedAt
-            }
-          }
-        `,
+    this.allProjectsGQL
+      .fetch({
+        fetchPolicy: 'network-only',
       })
       .subscribe((result) => {
         this.responseGetter = result.data;
@@ -68,42 +60,14 @@ export class AddCampComponent implements OnInit {
       this.campForm.controls['endDate'].value
     );
 
-    var CREATE_CAMP = gql`
-      mutation createCampFunction(
-        $campName: String!
-        $status: String!
-        $startDate: String
-        $endDate: String
-        $project: ID!
-        $address: String
-      ) {
-        createCamp(
-          campInput: {
-            name: $campName
-            status: $status
-            project: $project
-            address: $address
-            startDate: $startDate
-            endDate: $endDate
-          }
-        ) {
-          name
-          status
-        }
-      }
-    `;
-
-    this.apollo
+    this.addCampGQL
       .mutate({
-        mutation: CREATE_CAMP,
-        variables: {
-          campName: this.campForm.controls['name'].value,
-          project: project,
-          status: this.campForm.controls['status'].value,
-          address: this.campForm.controls['address'].value,
-          startDate: startDateStr,
-          endDate: endDateStr,
-        },
+        campName: this.campForm.controls['name'].value,
+        project: project,
+        status: this.campForm.controls['status'].value,
+        address: this.campForm.controls['address'].value,
+        startDate: startDateStr,
+        endDate: endDateStr,
       })
       .subscribe(
         (result) => {
