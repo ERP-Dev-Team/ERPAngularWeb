@@ -1,0 +1,20 @@
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="h3 mb-0 text-gray-800">Add Work Type</h1>
+</div>
+<form class="formContainer" [formGroup]="workTypeForm" (ngSubmit)="onAddWorkType()">
+    <div class="form-row row">
+        <div class="form-group col-md-4">
+            <label for="name" class="lead">Name</label>
+            <input type="text" class="form-control" id="name" formControlName="name" placeholder="work Type Name">
+        </div>
+        <div class="form-group col-md-4">
+            <label for="unit" class="lead">Unit</label>
+            <select id="startDate" formControlName="unit" class="form-control">
+                <option selected>Choose a unit...</option>
+                <option *ngFor="let unit of unitsList" [value]="unit._id">{{unit.name}}</option>
+              </select>
+        </div>
+    </div>
+    <button type="submit" [disabled]="workTypeForm.invalid" class="btn"
+        [ngClass]="{'btn-primary':workTypeForm.valid}">Submit</button>
+</form>

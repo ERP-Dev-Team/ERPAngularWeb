@@ -22,13 +22,10 @@ export class AllProjectsService extends Query {
     }
   `;
 
-  private _response;
 
-  set Response(value: any) {
-    this._response = value;
-  }
 
-  get projectDashboardDetails(): any {
+
+  public get projectDashboardDetails(): any {
     return this.apollo.query({
       query: gql`
         {
@@ -42,4 +39,6 @@ export class AllProjectsService extends Query {
       `,
     });
   }
+
+ 
 }

@@ -1,0 +1,13 @@
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="h3 mb-0 text-gray-800">Edit Supplier Type</h1>
+</div>
+<form class="formContainer" [formGroup]="supplierTypeForm" (ngSubmit)="updateSupplierType()">
+    <div class="form-row row">
+        <div class="form-group col-md-4">
+            <label for="name" class="lead">Name</label>
+            <input type="text" class="form-control" id="name" formControlName="name" placeholder="Supplier Type Name">
+        </div>
+    </div>
+    <button type="submit" [disabled]="supplierTypeForm.invalid" class="btn"
+        [ngClass]="{'btn-primary':supplierTypeForm.valid}">Update</button>
+</form>
