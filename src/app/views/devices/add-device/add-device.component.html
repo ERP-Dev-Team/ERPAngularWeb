@@ -1,0 +1,34 @@
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+  <h1 class="h3 mb-0 text-gray-800">Add Device</h1>
+
+</div>
+<form class="formContainer" [formGroup]="deviceForm" (ngSubmit)="addDevice()">
+  <div class="form-row row">
+    <div class="form-group col-md-4">
+      <label for="make" class="lead">make</label>
+      <input type="text" class="form-control" id="make" formControlName="make" placeholder="make">
+    </div>
+    <div class="form-group col-md-4">
+      <label for="model" class="lead">model</label>
+      <input type="text" class="form-control" id="model" formControlName="model" placeholder="model">
+    </div>
+    <div class="form-group col-md-4">
+      <label for="cellNumber" class="lead">cell Number</label>
+      <input type="text" class="form-control" id="cellNumber" formControlName="cellNumber" placeholder="cellNumber">
+    </div>
+    <div class="form-group col-md-4">
+      <label for="IMEI" class="lead">IMEI</label>
+      <input type="text" class="form-control" id="IMEI" formControlName="IMEI" placeholder="IMEI">
+    </div>
+    <div class="form-group col-md-4">
+      <label for="userAssigned" class="lead">Assign User</label>
+      <select id="startDate" formControlName="userAssigned" class="form-control">
+        <option selected>Choose a user...</option>
+        <option *ngFor="let user of usersList" [value]="user._id">{{user.firstName}}</option>
+      </select>
+    </div>
+
+  </div>
+  <button type="submit" [disabled]="deviceForm.invalid" class="btn"
+    [ngClass]="{'btn-primary':deviceForm.valid}">Submit</button>
+</form>
