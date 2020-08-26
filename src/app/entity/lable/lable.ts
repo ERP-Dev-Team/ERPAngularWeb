@@ -20,5 +20,8 @@ export const LABELS:Lable[] = [
   { path: '/viewProject',  name: 'Vehicles',addPath:'/add' },
   { path: '/viewProject', name: 'Vehicle Types',addPath:'/add' },
   { path: '/viewCaved', name: 'CAVED',addPath:'/add' },
+  { path: '/viewDevices', name: 'Devices',addPath:'/addDevice' },
+  { path: '/viewWorkTypes', name: 'Work Types',addPath:'/addWorkType' },
+  { path: '/viewSupplierTypes', name: 'Supplier Types',addPath:'/addSupplierType' },
   ]
   
