@@ -32,10 +32,29 @@ import { ComponentLabelComponent } from '../../components/component-label/compon
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { CavedComponent } from '../../views/caved/caved.component';
 import { EditCavedComponent } from '../../views/caved/edit-caved/edit-caved.component';
+import { ViewRequistionComponent } from '../../views/materialViews/Requistions/view-requistion/view-requistion.component';
+import { CreateRequistionComponent } from '../../views/materialViews/Requistions/create-requistion/create-requistion.component';
+import {AddDeviceComponent} from '../../views/devices/add-device/add-device.component';
+import {ViewDeviceComponent} from '../../views/devices/view-device/view-device.component';
+import {AddWorkTypeComponent} from '../../views/workType/add-work-type/add-work-type.component';
+import {EditWorkTypeComponent} from '../../views/workType/edit-work-type/edit-work-type.component';
+import {ViewWorkTypesComponent} from '../../views/workType/view-work-types/view-work-types.component';
+import {AddSupplierTypeComponent} from  '../../views/supplier/supplier_type/add/add-supplier-type.component';
+import {ViewSupplierTypeComponent} from '../../views/supplier/supplier_type/view/view-supplier-type.component';
+import {EditSupplierTypeComponent} from '../../views/supplier/supplier_type/edit/edit-supplier-type.component';
 
 
 @NgModule({
-  declarations: [ViewItemCategoryComponent,
+  declarations: [
+    EditSupplierTypeComponent,
+    AddSupplierTypeComponent,
+    ViewSupplierTypeComponent,
+    EditWorkTypeComponent,
+    ViewWorkTypesComponent,
+    AddDeviceComponent,
+    ViewDeviceComponent,
+    AddWorkTypeComponent,
+    ViewItemCategoryComponent,
     ViewProjectComponent,
     EditProjectComponent,
     ViewCampComponent,
@@ -58,7 +77,9 @@ import { EditCavedComponent } from '../../views/caved/edit-caved/edit-caved.comp
     AddProjectComponent, ViewUserComponent, EditUserComponent, AddUserComponent,
     ComponentLabelComponent,
     CavedComponent,
-    EditCavedComponent
+    EditCavedComponent,
+    ViewRequistionComponent,
+    CreateRequistionComponent
   ],
   imports: [
     CommonModule,
