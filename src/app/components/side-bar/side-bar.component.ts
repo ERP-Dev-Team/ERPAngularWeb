@@ -33,6 +33,10 @@ export class SideBarComponent implements OnInit {
    this.router.navigate([`${label.path}`], { queryParams: label})
  }
 
+ navigateToRequistions(){
+   this.router.navigate(['/viewRequisition'])
+ }
+
   ngOnInit(): void {
      this.navItemS = LABELS;
 
