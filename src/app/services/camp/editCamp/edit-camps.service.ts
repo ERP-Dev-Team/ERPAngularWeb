@@ -11,8 +11,8 @@ export class EditCampsService extends Mutation {
   mutation editCampFunction(
     $campName: String!
     $status: String!
-    $startDate: String!
-    $endDate: String!
+    $startDate: String
+    $endDate: String
     $project: ID!
     $campId: ID!
     $address: String

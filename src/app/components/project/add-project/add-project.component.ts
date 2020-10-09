@@ -40,27 +40,7 @@ export class AddProjectComponent implements OnInit {
       this.projectForm.controls['endDate'].value
     );
 
-    var CREATE_PROJECT = gql`
-      mutation createProjectFunction(
-        $projectName: String!
-        $status: String!
-        $startDate: String!
-        $endDate: String!
-      ) {
-        createProject(
-          projectInput: {
-            name: $projectName
-            status: $status
-            startDate: $startDate
-            endDate: $endDate
-          }
-        ) {
-          name
-          status
-        }
-      }
-    `;
-
+    
     this.projectGQL.mutate({
           projectName: this.projectForm.controls['name'].value,
           status: this.projectForm.controls['status'].value,
