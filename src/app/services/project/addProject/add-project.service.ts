@@ -11,8 +11,8 @@ export class AddProjectService extends Mutation{
   mutation createProjectFunction(
     $projectName: String!
     $status: String!
-    $startDate: String!
-    $endDate: String!
+    $startDate: String
+    $endDate: String
   ) {
     createProject(
       projectInput: {
